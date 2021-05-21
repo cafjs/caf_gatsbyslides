@@ -1,5 +1,127 @@
+import mytheme from './mytheme.js';
+
+import {future, prism} from '@mdx-deck/themes'
+import ImgPath from '../../src/images/randy-fath-KyreMg96fuA-unsplash.jpg'
+
+import WindMill from '../../src/svgs/windmill.svg'
+import SplitCode from '../../src/components/splitCode'
+
+export const theme = {
+    ...mytheme,
+    ...prism,
+    styles: {
+        h1: {
+            textTransform: 'uppercase',
+            },
+          code: {
+    fontSize: `36px`
+}
+  }
+}
+
+<Header>
+
+# Header
+
+</Header>
+
 # Hello
 
 ---
 
-This is my presentation
+ This is my presentation
+
+---
+
+# Nice photo
+
+<Image src={ImgPath} style={{width: `50%`, height: `50%`}} />
+
+---
+<SplitCode>
+
+header123
+
+```js
+const caf = require('caf_core');
+const util = require('util');
+const setTimeoutPromise = util.promisify(setTimeout);
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        return [];
+    },
+    async increment() {
+        this.state.counter = this.state.counter + 1;
+        await setTimeoutPromise(1000);
+        return this.getCounter();
+    },
+    async getCounter() {
+        return [null, this.state.counter];
+    }
+};
+caf.init(module);
+```
+
+</SplitCode>
+
+---
+
+<Invert>
+
+# steps
+
+<Steps>
+
+1. First step
+2. Second step
+3. Third step
+
+</Steps>
+
+</Invert>
+
+---
+
+
+<Split>
+
+<Image src={ImgPath} style={{height: `200px`, width: `200px`}} />
+
+<Image src={ImgPath} style={{height: `200px`, width: `200px`}} />
+
+</Split>
+
+---
+
+<FullScreenCode>
+
+#### header
+
+```js
+const caf = require('caf_core');
+const util = require('util');
+const setTimeoutPromise = util.promisify(setTimeout);
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        return [];
+    },
+    async increment() {
+        this.state.counter = this.state.counter + 1;
+        await setTimeoutPromise(1000);
+        return this.getCounter();
+    },
+    async getCounter() {
+        return [null, this.state.counter];
+    }
+};
+caf.init(module);
+```
+
+</FullScreenCode>
+
+---
+
+
+<WindMill width="200" height="200" />
