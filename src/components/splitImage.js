@@ -15,7 +15,7 @@ export const SplitImage = ({ children, ...props }) => {
         textAlign: 'left',
       }}>
           <div sx={{ width: '50%', display: 'flex','justify-content':"center" }}>{first}</div>
-          <div sx={{ width: '50%', height: '100%', display: 'flex','justify-content':"center" }}>{rest}</div>
+          <div sx={{ width: '50%',  display: 'flex','justify-content':"center" }}>{rest}</div>
     </div>
   )
 }

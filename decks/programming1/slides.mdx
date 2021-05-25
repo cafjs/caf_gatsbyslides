@@ -354,7 +354,7 @@ caf.init(module);
 * Scope of the transaction
   *  `N` asynchronous steps to process **one** request
 * Rollback changes on error
-* Checkpoint to Redis
+* Commits after checkpointing with Redis
 
 ---
 
@@ -599,7 +599,7 @@ https://root-hello.cafjs.com/#from=foo-ca1&ca=foo-ca1&token=Hs1...
   * User <ins>`foo`</ins>, CA local name <ins>`ca1`</ins>
 * When <ins>`from`</ins> equals <ins>`ca`</ins>, the client is the **owner**,
   * and owners create CAs on first access
-* Token should validate the <ins>from</ins> field
+* Token validates the <ins>from</ins> field
   * <ins>foo-ca1</ins> in application <ins>root-hello</ins>
 
 ---
@@ -627,11 +627,8 @@ s.onopen = async function() {
     }
 };
 s.onclose = function(err) {
-    if (err) {
-        console.log(`Got exception ${err}`);
-        process.exit(1);
-    }
-    console.log('Done OK');
+    err && console.log(`Got exception ${err}`);
+    err && process.exit(1);
 };
 ```
 </SplitCode>
@@ -671,6 +668,42 @@ s.onclose = function(err) {
 ---
 <CafjsHeader/>
 
+## Summary
+
+<SplitImage>
+
+<div>
+
+* Component Model
+  * Asynchronous construction
+  * Supervision tree / navigation
+  * JSON descriptions
+* Cloud Assistant
+  * Request serialization
+  * Transactional Actor
+  * Transactional plugins
+
+</div>
+
+<div>
+
+* Autonomous Computation
+  * `__ca_pulse__()`
+  * Offline notifications
+  * Notification groups
+* Client Library
+  * Authentication
+  * Request/response
+  * Notifications
+
+</div>
+
+
+</SplitImage>
+
+---
+<CafjsHeader/>
+
 ## Wrap up
 
 Website: https://www.cafjs.com
@@ -682,11 +715,3 @@ Caf.js Cloud: https://root-launcher.cafjs.com
 Twitter: @cafjs
 
 E-mail: antlai@cafjs.com
-
-
----
-<CafjsHeader/>
-
-# Nice photo
-
-<Image src={ImgPath} style={{width: `50%`, height: `50%`}} />

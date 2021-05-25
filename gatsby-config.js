@@ -6,7 +6,12 @@ module.exports = {
         author: `Antonio Lain`
     },
     plugins: [
-        'gatsby-theme-mdx-deck',
+        {
+            resolve: 'gatsby-theme-mdx-deck',
+            options: {
+                basePath: ''
+            }
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
