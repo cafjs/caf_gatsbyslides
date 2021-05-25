@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="256" height="256" viewBox="0, 0, 256, 256">
+  <g id="Layer_1">
+    <g>
+      <path d="M102.276,84.5 C92.459,84.5 84.5,76.441 84.5,66.5 C84.5,56.559 92.459,48.5 102.276,48.5 C112.093,48.5 120.052,56.559 120.052,66.5 C120.052,76.441 112.093,84.5 102.276,84.5 z" fill="currentColor"/>
+      <path d="M102.276,84.5 C92.459,84.5 84.5,76.441 84.5,66.5 C84.5,56.559 92.459,48.5 102.276,48.5 C112.093,48.5 120.052,56.559 120.052,66.5 C120.052,76.441 112.093,84.5 102.276,84.5 z" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <path d="M54.276,132.5 C44.459,132.5 36.5,124.441 36.5,114.5 C36.5,104.559 44.459,96.5 54.276,96.5 C64.093,96.5 72.052,104.559 72.052,114.5 C72.052,124.441 64.093,132.5 54.276,132.5 z" fill="none"/>
+      <path d="M54.276,132.5 C44.459,132.5 36.5,124.441 36.5,114.5 C36.5,104.559 44.459,96.5 54.276,96.5 C64.093,96.5 72.052,104.559 72.052,114.5 C72.052,124.441 64.093,132.5 54.276,132.5 z" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <path d="M150.276,132.5 C140.459,132.5 132.5,124.441 132.5,114.5 C132.5,104.559 140.459,96.5 150.276,96.5 C160.093,96.5 168.052,104.559 168.052,114.5 C168.052,124.441 160.093,132.5 150.276,132.5 z" fill="none"/>
+      <path d="M150.276,132.5 C140.459,132.5 132.5,124.441 132.5,114.5 C132.5,104.559 140.459,96.5 150.276,96.5 C160.093,96.5 168.052,104.559 168.052,114.5 C168.052,124.441 160.093,132.5 150.276,132.5 z" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <path d="M186.276,192.5 C176.459,192.5 168.5,184.441 168.5,174.5 C168.5,164.559 176.459,156.5 186.276,156.5 C196.093,156.5 204.052,164.559 204.052,174.5 C204.052,184.441 196.093,192.5 186.276,192.5 z" fill="none"/>
+      <path d="M186.276,192.5 C176.459,192.5 168.5,184.441 168.5,174.5 C168.5,164.559 176.459,156.5 186.276,156.5 C196.093,156.5 204.052,164.559 204.052,174.5 C204.052,184.441 196.093,192.5 186.276,192.5 z" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <path d="M114.276,192.5 C104.459,192.5 96.5,184.441 96.5,174.5 C96.5,164.559 104.459,156.5 114.276,156.5 C124.093,156.5 132.052,164.559 132.052,174.5 C132.052,184.441 124.093,192.5 114.276,192.5 z" fill="none"/>
+      <path d="M114.276,192.5 C104.459,192.5 96.5,184.441 96.5,174.5 C96.5,164.559 104.459,156.5 114.276,156.5 C124.093,156.5 132.052,164.559 132.052,174.5 C132.052,184.441 124.093,192.5 114.276,192.5 z" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+    <text transform="matrix(1, 0, 0, 1, 53.5, 115.642)">
+      <tspan x="-4.736" y="3.016" font-family="Avenir-Black" font-size="16" fill="currentColor">1</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 113.722, 174.782)">
+      <tspan x="-4.736" y="3.016" font-family="Avenir-Black" font-size="16" fill="currentColor">2</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 186.311, 176.603)">
+      <tspan x="-4.736" y="3.016" font-family="Avenir-Black" font-size="16" fill="currentColor">3</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 149.431, 114.738)">
+      <tspan x="-4.736" y="3.016" font-family="Avenir-Black" font-size="16" fill="currentColor">4</tspan>
+    </text>
+    <path d="M89.024,78.42 L65.351,100.86" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M115.161,78.42 L140.806,99.873" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M140.806,130.943 L122.559,161.026" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M161.273,130.45 L180.506,156.834" fill-opacity="0" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M61.653,70.53 C49.799,78.044 39.791,86.827 31.323,97.901 C22.07,110 9.413,150.511 34.035,154.615 C53.044,157.783 95.944,120.29 100.613,123.792 C124.494,141.702 50.545,185.101 91.736,212.562 C98.837,217.296 108.23,217.914 116.148,215.274 C141.268,206.901 136.98,185.938 147.464,164.971 C150.645,158.608 174.68,215.613 180.013,220.946 C186.358,227.291 208.141,210.914 211.329,205.904 C230.905,175.141 216.25,151.554 195.054,126.504 C188.314,118.539 184.869,107.779 176.807,100.613 C166.33,91.3 153.775,84.904 144.505,74.475" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M34.267,82.127 L31.816,95.435" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M30.83,96.668 L46.365,91.983" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M73.038,129.733 L83.641,131.952" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M84.585,131.436 L80.147,143.519" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M103.228,210.505 L115.804,215.19" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M105.898,224.761 L116.008,214.898" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M160.286,208.123 L174.835,212.562" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M177.547,200.479 L174.095,211.576" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M198.776,144.916 L198.507,131.436" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M199.246,131.682 L211.822,134.395" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M152.86,82.09 L155.8,93.429" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M151.902,82.859 L164.311,84.08" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+</svg>

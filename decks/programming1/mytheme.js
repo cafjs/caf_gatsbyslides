@@ -1,6 +1,7 @@
 const blue = '#0af'
 
 export default {
+    breakpoints: ['40rem', '65rem','81rem'],
   googleFont: 'https://fonts.googleapis.com/css?family=Poppins:400,600',
   fonts: {
     body: '"Poppins", sans-serif',
@@ -27,7 +28,14 @@ export default {
       bg: 'black',
     },
     code: {
-      color: 'primary',
+        color: 'primary',
+        fontSize: [12,14, 22,32]
     },
+       h3: {
+          textTransform: 'none',
+      },
+      h4: {
+          textTransform: 'none',
+      },
   },
 }

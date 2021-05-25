@@ -12,10 +12,10 @@ export const SplitCode = ({ children, ...props }) => {
         alignItems: 'center',
           height: '100%',
           width: '100%',
-        textAlign: 'center',
+        textAlign: 'left',
       }}>
-      <div sx={{ width: '30%' }}>{first}</div>
-      <div sx={{ width: '69%' }}>{rest}</div>
+          <div sx={{ width: '30%', 'margin-left': '50px' }}>{first}</div>
+      <div sx={{ width: '65%' }}>{rest}</div>
     </div>
   )
 }

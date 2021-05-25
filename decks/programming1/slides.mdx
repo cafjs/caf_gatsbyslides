@@ -1,46 +1,325 @@
 import mytheme from './mytheme.js';
 
-import {future, prism} from '@mdx-deck/themes'
+import {prism} from '@mdx-deck/themes'
 import ImgPath from '../../src/images/randy-fath-KyreMg96fuA-unsplash.jpg'
 
 import WindMill from '../../src/svgs/windmill.svg'
+import ComponentTree from '../../src/svgs/component1.svg'
+
 import SplitCode from '../../src/components/splitCode'
+import SplitImage from '../../src/components/splitImage'
+
+import CafjsHeader from '../../src/components/cafjsheader'
 
 export const theme = {
     ...mytheme,
     ...prism,
-    styles: {
-        h1: {
-            textTransform: 'uppercase',
-            },
-          code: {
-    fontSize: `36px`
-}
-  }
 }
 
-<Header>
+<CafjsHeader/>
 
-# Header
+## Programming with Caf.js
 
-</Header>
+## Part 1
 
-# Hello
+Antonio Lain, Caf.js Labs
+
+antlai@cafjs.com
+
+---
+<CafjsHeader/>
+
+## Part 1 covers
+
+* Component Model
+* Cloud Assistant
+* Autonomous Computation
+* Client Library
+
+---
+<CafjsHeader/>
+
+## Part 2 will cover
+
+* Trusted Bus
+* SharedMap
+* Publish-Subscribe
+* Caf.js Lite (IoT)
+
+---
+<CafjsHeader/>
+
+## Component Model
+
+Inspired by
+
+* the SmartFrog framework,
+* and the Erlang/OTP libraries.
 
 ---
 
- This is my presentation
+<CafjsHeader/>
+
+###  Build <ins>everything</ins> with hierarchies of components
+
+* Deterministic asynchronous creation
+
+* Supervision trees
+
+* Navigating the hierarchy
+
+* Describing hierarchies with JSON
 
 ---
 
-# Nice photo
+<CafjsHeader/>
 
-<Image src={ImgPath} style={{width: `50%`, height: `50%`}} />
+### Asynchronous factory method
+
+```js
+exports.newInstance = async ($, spec) => ...
+```
+
+* Never block the main loop
+
+* Swap implementations without modifying code
 
 ---
+
+<CafjsHeader/>
+
+### Deterministic Creation Order
+
+<SplitImage>
+
+* Left to right
+* Parent after children
+* Top component first
+* Destroy reverses order
+
+<ComponentTree width="100%" height="100%" />
+
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+### Enforce dependencies with  creation order
+
+---
+
+<CafjsHeader/>
+
+### Supervision trees
+
+* Parent periodically checks children
+* Recovery strategies
+   * Shutdown and restart all
+   * Restart only failed ones
+   * Ignore
+* Bubble up error when recover fails
+* Last resort Kubernetes restarts container
+
+---
+
+<CafjsHeader/>
+
+### Navigating the hierarchy
+
+* Siblings in **`this.$`**
+
+* Topmost <ins>visible</ins> component in **`this.$._`**
+
+* Application code uses security proxies
+
+```js
+this.$.log -> $._.$.log
+```
+---
+
+<CafjsHeader/>
+
 <SplitCode>
 
-header123
+Describing hierarchies with JSON
+
+```json
+{
+    "name" : "top",
+    "module" : "caf_components#supervisor",
+    "description" : "Supervisor for this app.",
+    "env": {
+        "logLevel": "process.env.LOG_LEVEL||DEBUG",
+        "somethingElse": "process.env.SOMETHING_ELSE||{\"goo\":2}"
+    },
+    "components": [
+        {
+            "name" : "log",
+            "module": "caf_components#plug_log",
+            "description": "Logger service",
+            "env" : {
+                "logLevel" : "$._.env.logLevel"
+            }
+        }
+    ]
+}
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+Modifying `log` with file `<name>++.json`
+
+```json
+{
+    "name": "top",
+    "components": [
+        {
+            "name": "log",
+            "env": {
+                "logLevel" : "WARN"
+            }
+        }
+    ]
+}
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+Deleting `log`
+
+```json
+{
+    "name": "top",
+    "components": [
+        {
+            "name": "log",
+            "module" : null
+        }
+    ]
+}
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+Adding `bar` after `log`
+
+```json
+{
+    "name": "top",
+    "components": [
+        {
+            "name": "log"
+        },
+        {
+            "name" : "bar",
+            "module": "./myApp",
+            "description": "My other app component",
+            "env" : {
+                "somethingElse" : "$._.env.somethingElse",
+                "message" : "Whatever"
+            }
+        }
+    ]
+}
+```
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+### Much more
+
+* `framework.json`
+* `ca.json`
+* `iot.json`
+* Build your own
+
+https://www.cafjslabs.com/docs/documentation#components
+
+---
+
+<CafjsHeader/>
+
+# Cloud Assistant
+
+---
+
+<CafjsHeader/>
+
+### Start with an Actor
+
+* Location-independent name
+* Private state (kilobytes)
+* Local queue to serialize requests
+* Asynchronous interactions with others
+
+
+---
+
+<CafjsHeader/>
+
+
+<SplitCode>
+
+ `ca_methods.js`
+
+```js
+const caf = require('caf_core');
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        return [];
+    },
+    async getCounter() {
+        this.$.log && this.$.log.debug('getCounter()')
+        return [null, this.state.counter];
+    }
+};
+caf.init(module);
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+### Request serialization is a <ins>cluster-wide</ins> property
+
+* At most **one** active CA with a given name
+    * **Hundreds** of node.js processes across **many** servers
+* Request serialization across multiple asynchronous steps
+
+
+---
+
+<CafjsHeader/>
+
+
+<SplitCode>
+
+ No races
 
 ```js
 const caf = require('caf_core');
@@ -65,52 +344,46 @@ caf.init(module);
 
 </SplitCode>
 
----
-
-<Invert>
-
-# steps
-
-<Steps>
-
-1. First step
-2. Second step
-3. Third step
-
-</Steps>
-
-</Invert>
 
 ---
 
+<CafjsHeader/>
 
-<Split>
+### Transactional changes to private state
 
-<Image src={ImgPath} style={{height: `200px`, width: `200px`}} />
-
-<Image src={ImgPath} style={{height: `200px`, width: `200px`}} />
-
-</Split>
+* Scope of the transaction
+  *  `N` asynchronous steps to process **one** request
+* Rollback changes on error
+* Checkpoint to Redis
 
 ---
 
-<FullScreenCode>
+<CafjsHeader/>
 
-#### header
+
+<SplitCode>
+
+* Application Errors
+* Unrecoverable Errors
+* Both rollback
+
 
 ```js
 const caf = require('caf_core');
-const util = require('util');
-const setTimeoutPromise = util.promisify(setTimeout);
+const assert = require('assert');
 exports.methods = {
     async __ca_init__() {
         this.state.counter = 0;
         return [];
     },
-    async increment() {
-        this.state.counter = this.state.counter + 1;
-        await setTimeoutPromise(1000);
-        return this.getCounter();
+    async increment(n) {
+        if (n <= 0) {
+            return [new Error('Only increment!')];
+        } else {
+            this.state.counter = this.state.counter + n;
+            assert(!isNaN(this.state.counter));
+            return this.getCounter();
+        }
     },
     async getCounter() {
         return [null, this.state.counter];
@@ -119,9 +392,301 @@ exports.methods = {
 caf.init(module);
 ```
 
-</FullScreenCode>
+</SplitCode>
 
 ---
 
+<CafjsHeader/>
 
-<WindMill width="200" height="200" />
+###  External Consistency
+
+* Private state <ins>**always**</ins> consistent with external commitments
+* Transactional plugins
+  * Mediate to delay externalization <ins>**after**</ins> commit
+  * Make actions idempotent for safe retry
+  * Combine with a two-phase commit protocol
+
+---
+
+<CafjsHeader/>
+
+
+<SplitCode>
+
+* Ignore *notify* on error
+* Resend after crash
+
+
+```js
+const caf = require('caf_core');
+const assert = require('assert');
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        return [];
+    },
+    async increment() {
+        this.state.counter = this.state.counter + 1;
+        this.$.session.notify([this.state.counter]);
+        if (this.state.counter <= 100) {
+            return this.getCounter();
+        } else {
+            return [new Error('Limit exceeded')];
+        }
+    },
+    async getCounter() {
+        return [null, this.state.counter];
+    }
+};
+caf.init(module);
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+### Much more
+
+* Update internal state schema safely
+* Read properties from the environment
+* Customize actions after hibernation
+
+https://www.cafjslabs.com/docs/documentation#cloud-assistant
+
+
+
+---
+
+<CafjsHeader/>
+
+## Autonomous Computation
+
+---
+
+<CafjsHeader/>
+
+### Autonomous Cloud Assistant
+
+* `__ca_pulse__()`
+* Sessions
+  * Add notification queues for offline clients
+  * Session name, chosen by the client, matches queue name
+  * Leaky queues managed by user code
+
+---
+
+<CafjsHeader/>
+
+
+<SplitCode>
+
+<div style={{display:"flex", 'justify-content':"center"}} >
+<WindMill width="90%" height="90%" />
+</div>
+
+```js
+const caf = require('caf_core');
+const SESSION = 'admin';
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        this.$.session.limitQueue(1, SESSION);
+        return [];
+    },
+    async __ca_pulse__() {
+        this.state.counter = this.state.counter + 1;
+        if (this.state.counter % this.$.props.divisor === 0) {
+            this.$.session.notify([this.state.counter], SESSION);
+        }
+        return [];
+    }
+};
+caf.init(module);
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+* Notification groups
+* On-demand queues
+* RegExp for names
+
+```js
+const caf = require('caf_core');
+const SESSION = /^admin/;
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        return [];
+    },
+    async __ca_pulse__() {
+        this.state.counter = this.state.counter + 1;
+        if (this.state.counter % this.$.props.divisor === 0) {
+            this.$.session.notify([this.state.counter], SESSION);
+        }
+        return [];
+    },
+    async getCounter() {
+        return [null, this.state.counter];
+    }
+};
+caf.init(module);
+```
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+### Much more
+
+* Persistent Sessions
+* Stateless client recovery
+
+https://www.cafjslabs.com/docs/documentation#autonomous
+
+---
+
+<CafjsHeader/>
+
+# Client Library
+
+---
+
+<CafjsHeader/>
+
+### Caf.js client library
+
+* Tiny, just needs web socket support
+* Browser, cloud, script, and embedded devices
+* Combines
+  * authentication,
+  * request-response,
+  * and notifications
+
+---
+
+<CafjsHeader/>
+
+### Authentication
+
+* JSON Web Token embedded in URL is
+  * self-describing,
+  * short-lived,
+  * signed by the *Accounts* service,
+  * managed in the Cloud by the *Launcher* app,
+  * and locally validated with an injected public key
+* Single Sign-On with attenuated tokens,
+  * forming a meet-semilattice
+
+---
+
+<CafjsHeader/>
+
+### Implicit Cloud Assistant (CA) creation
+
+https://root-hello.cafjs.com/#from=foo-ca1&ca=foo-ca1&token=Hs1...
+
+* Naming based on local namespaces
+  * User <ins>`foo`</ins>, CA local name <ins>`ca1`</ins>
+* When <ins>`from`</ins> equals <ins>`ca`</ins>, the client is the **owner**,
+  * and owners create CAs on first access
+* Token should validate the <ins>from</ins> field
+  * <ins>foo-ca1</ins> in application <ins>root-hello</ins>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+* Request-response
+* Magic methods
+* Error handling
+
+```js
+const caf_cli = require('caf_core').caf_cli;
+const URL = 'http://root-hello.vcap.me:3000/#from=foo-ca1&ca=foo-ca1';
+const s = new caf_cli.Session(URL);
+s.onopen = async function() {
+    try {
+        const counter1 = await s.increment(7).getPromise();
+        const counter2 = await s.getCounter().getPromise();
+        console.log(`before:${counter1} after:${counter2}`);
+        s.close();
+    } catch (err) {
+        s.close(err); // Application-level error
+    }
+};
+s.onclose = function(err) {
+    if (err) {
+        console.log(`Got exception ${err}`);
+        process.exit(1);
+    }
+    console.log('Done OK');
+};
+```
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+* Notifications
+* `session=admin`
+* `onmessage()`
+
+```js
+const caf_cli = require('caf_core').caf_cli;
+const util = require('util');
+const setTimeoutPromise = util.promisify(setTimeout);
+const s = new caf_cli.Session(
+    'http://root-hello.vcap.me/#session=admin&from=foo-ca1&ca=foo-ca1';
+);
+s.onopen = async function() {
+    await setTimeoutPromise(10000)
+    s.close();
+};
+s.onmessage = function(msg) {
+    const counter = caf_cli.getMethodArgs(msg)[0];
+    console.log(`Got notification ${counter}`);
+};
+s.onclose = function(err) {
+    err && console.log(`Got exception ${err}`);
+    err && process.exit(1);
+};
+```
+</SplitCode>
+
+---
+<CafjsHeader/>
+
+## Wrap up
+
+Website: https://www.cafjs.com
+
+Github: https://github.com/cafjs/caf
+
+Caf.js Cloud: https://root-launcher.cafjs.com
+
+Twitter: @cafjs
+
+E-mail: antlai@cafjs.com
+
+
+---
+<CafjsHeader/>
+
+# Nice photo
+
+<Image src={ImgPath} style={{width: `50%`, height: `50%`}} />
