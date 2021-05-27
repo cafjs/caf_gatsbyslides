@@ -102,6 +102,161 @@ antlai@cafjs.com
 
 </SplitImage>
 
+
+---
+
+<CafjsHeader/>
+
+## Trusted Bus
+
+<SplitImage>
+
+* Mediates CA to CA interactions
+* Enforces access control
+* Single app **only**
+
+<ComponentTree width="100%" height="100%" />
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+## Authentication
+
+* No tokens, no crypto
+  * Client library authentication **not enough**
+* How?
+  * Trusted endpoints add CA name to request
+  * Injected requests cannot be modified
+* Implementation
+  * Kubernetes network policy
+  * Security proxies in plugins
+
+---
+
+<CafjsHeader/>
+
+## Authorization
+
+* Access control check at the destination
+  * **before** calling a CA method
+* Make the caller CA name visible while the method executes
+* Also enforced for external calls (client library)
+
+
+
+
+---
+
+<CafjsHeader/>
+
+## Default policy
+
+### <ins>Trust No One</ins>
+
+* Only the owner can invoke methods using the client library
+  * No *Trusted Bus* interactions
+* If nothing works...
+  * check the security policy first!
+
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+<div>
+Simple Rules:
+
+* Local namespace
+  * `antonio-ca1`
+* Based on ownership
+  * `antonio`
+  * `security.SELF`
+* Group methods
+  * `null` for any
+
+</div>
+
+```js
+const caf = require('caf_core');
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        const rule = this.$.security.newSimpleRule(
+            'getCounter', this.$.security.SELF
+        );
+        this.$.security.addRule(rule);
+        return [];
+    },
+    async getCounter() {
+        this.$.log && this.$.log.debug('getCounter()')
+        return [null, this.state.counter];
+    }
+};
+caf.init(module);
+```
+
+</SplitCode>
+
+
+---
+
+<CafjsHeader/>
+
+## Aggregate Rules
+
+* Dynamic policies
+  * Define a group with a `SharedMap`
+* Sharing a group with many CAs
+  * Create replicas of a `SharedMap`
+* Group membership maintained by a team
+  * Linking between `SharedMaps`
+
+---
+
+<CafjsHeader/>
+
+### Much more
+
+* Aggregate Rules
+  * Linked local namespaces (inspired by SDSI)
+  * Delegation
+
+https://www.cafjslabs.com/docs/documentation#trusted-bus
+
+---
+
+<CafjsHeader/>
+
+## SharedMap
+
+---
+
+<CafjsHeader/>
+
+### CA + Distributed Data Structure (DDS)
+
+* CA (Actor Model)
+  * Replicate state without breaking serialization?
+* DDS
+  * Use shared-memory for replicated data
+* CA + DDS
+  * Visible as private state
+  * Avoid shared-memory <ins>GREMLINS</ins>
+    * races, deadlocks, awful failure modes...
+* Observational equivalence
+  * Replace DDS by extra requests
+
+---
+
+<CafjsHeader/>
+
+## Publish-Subscribe
+
 ---
 
 <CafjsHeader/>
@@ -154,75 +309,6 @@ antlai@cafjs.com
 
 <CafjsHeader/>
 
-## Trusted Bus
-
-<SplitImage>
-
-* Mediates internal CA interactions
-* Access Control
-
-<ComponentTree width="100%" height="100%" />
-
-</SplitImage>
-
----
-
-<CafjsHeader/>
-
-## Authentication
-
----
-
-<CafjsHeader/>
-
-## Authorization
-
----
-
-<CafjsHeader/>
-
-## Default policy
-
----
-
-<CafjsHeader/>
-
-## Simple Rules
-
----
-
-<CafjsHeader/>
-
-## Aggregate Rules
-
----
-
-<CafjsHeader/>
-
-### Much more
-
-* Linked local namespaces (SDSI)
-* Delegation
-* Examples
-
-https://www.cafjslabs.com/docs/documentation#trusted-bus
-
----
-
-<CafjsHeader/>
-
-## SharedMap
-
----
-
-<CafjsHeader/>
-
-## Publish-Subscribe
-
----
-
-<CafjsHeader/>
-
 ## Caf.js Lite
 
 ---
@@ -235,27 +321,27 @@ https://www.cafjslabs.com/docs/documentation#trusted-bus
 
 <div>
 
-* Overview
-  * Collaborative multi-tenancy
-  * Three-way isomorphic
-* Trusted Bus
-  * Authentication
-  * Authorization
-* Publish-Subscribe
-  * Private vs Forum
+
+* Collaborative multi-tenancy
+  * Trusted Bus
+    * Authentication
+    * Authorization
+  * Publish-Subscribe
+    * Private vs Forum
+  * SharedMap
+    * DDS and Actors
+    * Serialization and consistency
+    * Updating Code
 
 </div>
 
 <div>
 
-* SharedMap
-  * DDS and Actors
-  * Serialization and consistency
-  * Updating Code
-* Caf.js Lite (IoT)
-  * Companion CA
-  * Cron tasks
-  * Timed bundle
+* Three-way isomorphic
+  * Caf.js Lite (IoT)
+    * Companion CA
+    * Cron tasks
+    * Timed bundle
 
 </div>
 
