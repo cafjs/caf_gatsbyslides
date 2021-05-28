@@ -52,8 +52,8 @@ antlai@cafjs.com
 
 ## Two themes for today
 
-* Collaborative multi-tenancy
-* Three-way isomorphic
+* Collaborative multi-tenancy for your app
+* Three-way isomorphic framework
 
 ---
 
@@ -145,9 +145,6 @@ antlai@cafjs.com
 * Make the caller CA name visible while the method executes
 * Also enforced for external calls (client library)
 
-
-
-
 ---
 
 <CafjsHeader/>
@@ -169,7 +166,8 @@ antlai@cafjs.com
 <SplitCode>
 
 <div>
-Simple Rules:
+
+**Simple Rules**
 
 * Local namespace
   * `antonio-ca1`
@@ -240,22 +238,222 @@ https://www.cafjslabs.com/docs/documentation#trusted-bus
 
 ### CA + Distributed Data Structure (DDS)
 
+* Efficient data replication that respects CA serialization
 * CA (Actor Model)
-  * Replicate state without breaking serialization?
+  * Keep private copies updated with requests &#x2639;
 * DDS
-  * Use shared-memory for replicated data
+  * Use shared-memory for replicated data &#x263A;
 * CA + DDS
-  * Visible as private state
+  * DDS visible as private CA state
   * Avoid shared-memory <ins>GREMLINS</ins>
     * races, deadlocks, awful failure modes...
-* Observational equivalence
-  * Replace DDS by extra requests
+  * Observational equivalence
+    * Can replace DDS by extra requests
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+<div>
+
+**SharedMap**
+
+* Single writer/multiple reader
+* Name relative to CA
+  * antonio-ca1-map1
+* Silent updates
+* Not an ES6 Map
+* Browser and IoT
+
+</div>
+
+```js
+exports.methods = {
+    async __ca_init__() {
+        if (isAdmin(this)) {
+            const initV = {counter: 0};
+            this.$.sharing.addWritableMap('primary', ADMIN_MAP, {initV});
+        }
+        this.$.sharing.addReadOnlyMap('replica', primaryMap(this));
+        return [];
+    },
+    async __ca_pulse__() {
+        if (isAdmin(this)) {
+            const $$ = this.$.sharing.$;
+            const counter = $$.primary.get('counter');
+            $$.primary.set('counter', counter + 1);
+        }
+        return [];
+    },
+    async getCounter() {
+        const value = this.$.sharing.$.replica.get('counter');
+        return [null, value];
+    }
+};
+```
+
+
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+<SplitImage>
+
+<div>
+
+**SharedMap**
+
+* Respects request serialization
+* Does not delay other readers
+* Monotonic read consistency
+
+</div>
+
+```js
+async getCounter() {
+    const $$ = this.$.sharing.$;
+    const counter1 = $$.replica.get('counter');
+    await setTimeoutPromise(10000);
+    const counter2 = $$.replica.get('counter');
+    assert(counter1 === counter2,
+           'This never throws!');
+    return [null, [counter1, counter2]];
+}
+```
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+<SplitImage>
+
+<div>
+
+**SharedMap**
+
+* Transactional plugin
+  * Atomic updates
+  * Redis checkpointing
+  * Externally consistent
+* Monotonic read consistency
+  * No distributed transactions
+
+
+</div>
+
+```js
+async __ca_pulse__() {
+    if (isAdmin(this)) {
+        const $$ = this.$.sharing.$;
+        const counter = $$.primary.get('counter');
+        $$.primary.set('counter', counter+1);
+        await setTimeoutPromise(1000);
+        $$.primary.set('counter2', counter+2);
+        this.$.session.notify([counter+1, counter+2])
+    }
+    return [];
+}
+```
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+### Updating code
+
+* A *SharedMap* can contain serialized methods
+  * A custom replicated object!
+* Taming `eval`
+  * `setFun()`, `applyMethod()`, and `{noExec: true}`
+  * Single writer + naming convention + `Trusted Bus`
+    * Authenticates *SharedMap* custom method origin
+* Transactional updates of data and code
+* Many uses:
+  * getters/setters to hide schema changes
+  * Dynamic code updates for devices
+  * Choose where code runs
 
 ---
 
 <CafjsHeader/>
 
 ## Publish-Subscribe
+
+---
+
+<CafjsHeader/>
+
+### Topics
+
+* Private
+  * Like a blog
+    * Anybody can subscribe, one CA publishes
+  * `antonio-ca1-mynews`
+* Forum
+  * Anybody can publish or subscribe
+  * Use *Trusted Bus* to filter publishers
+  * `forum-othernews`
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+<div>
+
+**Publish-subscribe**
+
+
+</div>
+
+```js
+exports.methods = {
+    async __ca_init__() {
+        this.state.counter = 0;
+        this.$.pubsub.subscribe(mainChannel(this), '__ca_handle__');
+        this.$.security.addRule(this.$.security.newSimpleRule(
+            '__ca_handle__', this.$.security.SELF, ADMIN_CA
+        ));
+        return [];
+    },
+    async __ca_pulse__() {
+        if (isAdmin(this)) {
+            this.state.counter = this.state.counter + 1;
+            this.$.pubsub.publish(mainChannel(this),
+                                  `Counter: ${this.state.counter}`);
+        }
+        return [];
+    },
+    async __ca_handle__(topic, msg, from) {
+        this.$.session.notify([msg]);
+        return [];
+    }
+};
+```
+
+</SplitCode>
+
+
+---
+
+<CafjsHeader/>
+
+### SharedMap and Publish-Subscribe
+
+* Better together
+  * Publish is best effort, use SharedMap to confirm
+  * Silent updates with SharedMap, publish for action
+
 
 ---
 
