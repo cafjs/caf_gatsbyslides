@@ -5,6 +5,15 @@ import ImgPath from '../../src/images/randy-fath-KyreMg96fuA-unsplash.jpg'
 
 import Pipes from '../../src/svgs/pipes.svg'
 import ComponentTree from '../../src/svgs/component1.svg'
+import Multi1 from '../../src/svgs/multitenancy1.svg'
+import Multi2 from '../../src/svgs/multitenancy2.svg'
+import Multi3 from '../../src/svgs/multitenancy3.svg'
+import TrustedBus from '../../src/svgs/trustedbus.svg'
+import Iso1 from '../../src/svgs/iso1.svg'
+import Iso2 from '../../src/svgs/iso2.svg'
+import Iso3 from '../../src/svgs/iso3.svg'
+import TimedBundle from '../../src/svgs/timedbundle.svg'
+
 
 import SplitCode from '../../src/components/splitCode'
 import SplitImage from '../../src/components/splitImage'
@@ -53,11 +62,13 @@ antlai@cafjs.com
 ## Two themes for today
 
 * Collaborative multi-tenancy for your app
+  * Trusted Bus
+  * SharedMap
+  * Publish-Subscribe
 * Three-way isomorphic framework
+  * Caf.js Lite (IoT)
 
 ---
-
-<CafjsHeader/>
 
 ## Multi-tenancy
 
@@ -66,7 +77,7 @@ antlai@cafjs.com
 * Isolate
 * Fair share
 
-<ComponentTree width="100%" height="100%" />
+<Multi1 width="60%" height="60%" />
 
 </SplitImage>
 
@@ -82,7 +93,7 @@ antlai@cafjs.com
 * Bootstrap trust
 * Enable interactions
 
-<ComponentTree width="100%" height="100%" />
+<Multi2 width="60%" height="60%" />
 
 </SplitImage>
 
@@ -98,7 +109,7 @@ antlai@cafjs.com
 * High-level communication
 
 
-<ComponentTree width="100%" height="100%" />
+<Multi3 width="100%" height="100%" />
 
 </SplitImage>
 
@@ -109,15 +120,15 @@ antlai@cafjs.com
 
 ## Trusted Bus
 
-<SplitImage>
+<SplitCode>
 
 * Mediates CA to CA interactions
 * Enforces access control
 * Single app **only**
 
-<ComponentTree width="100%" height="100%" />
+<TrustedBus width="100%" height="100%" />
 
-</SplitImage>
+</SplitCode>
 
 ---
 
@@ -236,19 +247,45 @@ https://www.cafjslabs.com/docs/documentation#trusted-bus
 
 <CafjsHeader/>
 
+### Efficient Data Sharing between CAs
+
+* Low latency with data replication
+* Actor Model &#x2639;
+  * Keep private copies updated with requests
+* Distributed Data Structure (DDS) &#x263A;
+  * Silent updates
+  * Use shared-memory for replicated data
+
+---
+
+<CafjsHeader/>
+
 ### CA + Distributed Data Structure (DDS)
 
-* Efficient data replication that respects CA serialization
-* CA (Actor Model)
-  * Keep private copies updated with requests &#x2639;
-* DDS
-  * Use shared-memory for replicated data &#x263A;
-* CA + DDS
-  * DDS visible as private CA state
+* DDS visible as private CA state
+* Don't break the Actor Model
+  * Respect request serialization
   * Avoid shared-memory <ins>GREMLINS</ins>
-    * races, deadlocks, awful failure modes...
+    * Races, deadlocks, awful failure modes...
+* Can mechanically replace DDS calls by extra requests
   * Observational equivalence
-    * Can replace DDS by extra requests
+
+---
+
+<CafjsHeader/>
+
+### SharedMap
+
+* Single writer/multiple reader
+  * Name relative to owner CA
+    * antonio-ca1-map1
+* `get(key)`, `set(key, value)`
+  * Keys are strings, not an ES6 Map
+* Thousands of processes across many servers
+  * One update per process, not per CA
+  * Multi-version with structural reuse
+* Replicated in the Cloud, browser, and IoT device
+
 
 ---
 
@@ -260,37 +297,28 @@ https://www.cafjslabs.com/docs/documentation#trusted-bus
 
 **SharedMap**
 
-* Single writer/multiple reader
-* Name relative to CA
-  * antonio-ca1-map1
-* Silent updates
-* Not an ES6 Map
-* Browser and IoT
-
 </div>
 
 ```js
 exports.methods = {
-    async __ca_init__() {
-        if (isAdmin(this)) {
-            const initV = {counter: 0};
-            this.$.sharing.addWritableMap('primary', ADMIN_MAP, {initV});
-        }
-        this.$.sharing.addReadOnlyMap('replica', primaryMap(this));
-        return [];
-    },
-    async __ca_pulse__() {
-        if (isAdmin(this)) {
-            const $$ = this.$.sharing.$;
-            const counter = $$.primary.get('counter');
-            $$.primary.set('counter', counter + 1);
-        }
-        return [];
-    },
-    async getCounter() {
-        const value = this.$.sharing.$.replica.get('counter');
-        return [null, value];
+  async __ca_init__() {
+    isAdmin(this) && this.$.sharing.addWritableMap('primary', ADMIN_MAP,
+                                                   {initV: {count: 0}});
+    this.$.sharing.addReadOnlyMap('replica', primaryMap(this));
+    return [];
+  },
+  async __ca_pulse__() {
+    if (isAdmin(this)) {
+      const $$ = this.$.sharing.$;
+      const count = $$.primary.get('count');
+      $$.primary.set('count', count + 1);
     }
+    return [];
+  },
+  async getCount() {
+    const value = this.$.sharing.$.replica.get('count');
+    return [null, value];
+  }
 };
 ```
 
@@ -306,23 +334,23 @@ exports.methods = {
 
 <div>
 
-**SharedMap**
+**Safe CA embedding**
 
 * Respects request serialization
 * Does not delay other readers
-* Monotonic read consistency
+  * Multiple local versions
 
 </div>
 
 ```js
-async getCounter() {
+async getCount() {
     const $$ = this.$.sharing.$;
-    const counter1 = $$.replica.get('counter');
-    await setTimeoutPromise(10000);
-    const counter2 = $$.replica.get('counter');
-    assert(counter1 === counter2,
+    const count1 = $$.replica.get('count');
+    await setTimeoutPromise(1000);
+    const count2 = $$.replica.get('count');
+    assert(count1 === count2,
            'This never throws!');
-    return [null, [counter1, counter2]];
+    return [null, [count1, count2]];
 }
 ```
 
@@ -336,13 +364,14 @@ async getCounter() {
 
 <div>
 
-**SharedMap**
+**SharedMap Consistency**
 
 * Transactional plugin
   * Atomic updates
   * Redis checkpointing
   * Externally consistent
-* Monotonic read consistency
+* Replicas
+  * Monotonic read consistency
   * No distributed transactions
 
 
@@ -352,11 +381,11 @@ async getCounter() {
 async __ca_pulse__() {
     if (isAdmin(this)) {
         const $$ = this.$.sharing.$;
-        const counter = $$.primary.get('counter');
-        $$.primary.set('counter', counter+1);
+        const count = $$.primary.get('count');
+        $$.primary.set('count', count+1);
         await setTimeoutPromise(1000);
-        $$.primary.set('counter2', counter+2);
-        this.$.session.notify([counter+1, counter+2])
+        $$.primary.set('count2', count+2);
+        this.$.session.notify([count+1, count+2])
     }
     return [];
 }
@@ -371,16 +400,14 @@ async __ca_pulse__() {
 ### Updating code
 
 * A *SharedMap* can contain serialized methods
-  * A custom replicated object!
+  * Becomes a custom **replicated object**
 * Taming `eval`
   * `setFun()`, `applyMethod()`, and `{noExec: true}`
-  * Single writer + naming convention + `Trusted Bus`
-    * Authenticates *SharedMap* custom method origin
+  * Authenticated methods
 * Transactional updates of data and code
-* Many uses:
+* Many uses
   * getters/setters to hide schema changes
   * Dynamic code updates for devices
-  * Choose where code runs
 
 ---
 
@@ -394,13 +421,12 @@ async __ca_pulse__() {
 
 ### Topics
 
-* Private
-  * Like a blog
-    * Anybody can subscribe, one CA publishes
+* Private (like a blog)
+  * Anybody can subscribe, one CA publishes
   * `antonio-ca1-mynews`
 * Forum
   * Anybody can publish or subscribe
-  * Use *Trusted Bus* to filter publishers
+  * Use *Trusted Bus* policy to filter publishers
   * `forum-othernews`
 
 ---
@@ -411,7 +437,7 @@ async __ca_pulse__() {
 
 <div>
 
-**Publish-subscribe**
+**Publish-Subscribe**
 
 
 </div>
@@ -419,7 +445,7 @@ async __ca_pulse__() {
 ```js
 exports.methods = {
     async __ca_init__() {
-        this.state.counter = 0;
+        this.state.count = 0;
         this.$.pubsub.subscribe(mainChannel(this), '__ca_handle__');
         this.$.security.addRule(this.$.security.newSimpleRule(
             '__ca_handle__', this.$.security.SELF, ADMIN_CA
@@ -428,9 +454,9 @@ exports.methods = {
     },
     async __ca_pulse__() {
         if (isAdmin(this)) {
-            this.state.counter = this.state.counter + 1;
+            this.state.count = this.state.count + 1;
             this.$.pubsub.publish(mainChannel(this),
-                                  `Counter: ${this.state.counter}`);
+                                  `Count: ${this.state.count}`);
         }
         return [];
     },
@@ -451,8 +477,9 @@ exports.methods = {
 ### SharedMap and Publish-Subscribe
 
 * Better together
-  * Publish is best effort, use SharedMap to confirm
-  * Silent updates with SharedMap, publish for action
+  * Publish is best effort, use a `SharedMap` to confirm
+  * Silent updates with `SharedMap`, publish for action
+* Transactional plugins combine
 
 
 ---
@@ -461,15 +488,15 @@ exports.methods = {
 
 ## Three-way Isomorphic
 
-<SplitImage>
+<SplitCode>
 
 * Browser
 * Cloud
 * Device bridging code
 
-<ComponentTree width="100%" height="100%" />
+<Iso1 width="90%" height="90%" />
 
-</SplitImage>
+</SplitCode>
 
 ---
 
@@ -477,15 +504,15 @@ exports.methods = {
 
 ## Three-way Isomorphic
 
-<SplitImage>
+<SplitCode>
 
 * Browserify
 * Web Bluetooth API
 
 
-<ComponentTree width="100%" height="100%" />
+<Iso2 width="90%" height="90%" />
 
-</SplitImage>
+</SplitCode>
 
 ---
 
@@ -493,21 +520,169 @@ exports.methods = {
 
 ## Three-way Isomorphic
 
-<SplitImage>
+<SplitCode>
 
 * Impersonate
 * Introspect
 * Load testing
 
-<ComponentTree width="100%" height="100%" />
+<Iso3 width="90%" height="90%" />
 
-</SplitImage>
+</SplitCode>
 
 ---
 
 <CafjsHeader/>
 
 ## Caf.js Lite
+
+---
+
+<CafjsHeader/>
+
+### Caf.js Lite vs Caf.js
+
+* Differences
+  * One *CA Lite* instance per platform
+  * Long term state with *Companion CA*
+  * No checkpointing, some plugins are not transactional
+  * Simpler config with `iot.json`
+  * `__iot_setup__` and `__iot_loop__`
+
+---
+
+<CafjsHeader/>
+
+### Caf.js Lite vs Caf.js
+
+* Similarities
+  * Component model
+  * Queue serializes methods
+  * Error rollbacks changes
+  * `this.$`, `SharedMap`,...
+
+
+---
+
+<CafjsHeader/>
+
+#### ca_methods.js and iot_methods.js
+
+<SplitImage>
+
+```js
+// Companion CA
+const caf = require('caf_core');
+exports.methods = {
+  async __ca_init__() {
+    return [];
+  },
+  async setMessage(newMsg) {
+    const $$ = this.$.sharing.$;
+    $$.fromCloud.set('msg', newMsg);
+    return this.getCount();
+  },
+  async getCount() {
+    const $$ = this.$.sharing.$;
+    return [null, $$.toCloud.get('count')];
+  }
+};
+caf.init(module);
+```
+
+```js
+// CA Lite
+const caf_iot = require('caf_iot');
+exports.methods = {
+  async __iot_setup__() {
+    this.state.count = this.toCloud.get('count') || 0;
+    return [];
+  },
+  async __iot_loop__() {
+    const msg = this.fromCloud.get('msg') || 'Count:';
+    this.$.log.debug(msg + this.state.count);
+    this.state.count = this.state.count + 1;
+    this.toCloud.set('count', this.state.count);
+    return [];
+  }
+};
+caf_iot.init(module);
+```
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+<SplitImage>
+
+<div>
+
+### Timed Bundles
+
+* Worldwide coordination
+  * UTC time
+  * 100K+ devices with 2s
+  * most <100msec
+* Recovery
+  * Bundle execution semantics
+  * Late actions
+  * NOW and NOW_SAFE
+
+**Not for safety critical apps!**
+
+</div>
+
+<TimedBundle width="90%" height="90%" />
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+<div>
+
+**Creating bundles**
+
+* code introspection
+* propagation margin
+
+</div>
+
+```js
+async __ca_pulse__() {
+  this.state.count = this.state.count + 1;
+  const bundle = this.$.iot.newBundle(MARGIN);
+  bundle.down(0, [1]).up(300, [1]).recover(5000, ['go home']);
+  this.$.iot.sendBundle(bundle);
+  // `notify` improves responsiveness.
+  this.$.session.notify([this.state.count], IOT_SESSION);
+  return [];
+}
+```
+
+</SplitCode>
+
+
+---
+
+<CafjsHeader/>
+
+### Much more
+
+* Cron tasks
+* Companion CA hooks
+* Error handling
+* Cloud client plugin
+* Bluetooth/GATT plugin
+* GPIO plugin
+
+https://www.cafjslabs.com/docs/documentation#iot-device
+
 
 ---
 
@@ -524,12 +699,12 @@ exports.methods = {
   * Trusted Bus
     * Authentication
     * Authorization
-  * Publish-Subscribe
-    * Private vs Forum
   * SharedMap
     * DDS and Actors
     * Serialization and consistency
     * Updating Code
+  * Publish-Subscribe
+    * Private vs Forum
 
 </div>
 
@@ -538,7 +713,6 @@ exports.methods = {
 * Three-way isomorphic
   * Caf.js Lite (IoT)
     * Companion CA
-    * Cron tasks
     * Timed bundle
 
 </div>
@@ -546,7 +720,9 @@ exports.methods = {
 
 </SplitImage>
 
+
 ---
+
 <CafjsHeader/>
 
 ## Wrap up
@@ -560,3 +736,39 @@ Caf.js Cloud: https://root-launcher.cafjs.com
 Twitter: @cafjs
 
 E-mail: antlai@cafjs.com
+
+---
+
+# Extra slides
+
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+<div>
+
+**Cron Tasks**
+
+</div>
+
+```js
+exports.methods = {
+  async __iot_setup__() {
+    const options = {noSync: true};
+    this.state.count = this.toCloud.get('count') || 0;
+    this.$.cron.addCron('helloCron', 'greetings', ['Hi:'], 500, options);
+    this.$.cron.addCron('byeCron', 'greetings', ['Bye:'], 3000, options);
+    return [];
+  },
+  async greetings(greet) {
+    const now = (new Date()).getTime();
+    this.$.log && this.$.log.debug(greet + now);
+    return [];
+  }
+};
+caf_iot.init(module);
+```
+
+</SplitCode>

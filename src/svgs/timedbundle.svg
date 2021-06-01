@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="256" height="256" viewBox="0, 0, 256, 256">
+  <g id="Layer_1">
+    <path d="M36.5,36.5 L60.5,36.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-dasharray="3,3" stroke-linejoin="round"/>
+    <path d="M60.5,36.5 L168.5,36.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M52.859,46.208 L54.206,38.354 L48.5,32.792 L56.386,31.646 L59.913,24.5 L63.439,31.646 L71.325,32.792 L65.619,38.354 L66.966,46.208 L59.913,42.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M100.859,46.208 L102.206,38.354 L96.5,32.792 L104.386,31.646 L107.913,24.5 L111.439,31.646 L119.325,32.792 L113.619,38.354 L114.966,46.208 L107.913,42.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M160.859,46.208 L162.206,38.354 L156.5,32.792 L164.386,31.646 L167.913,24.5 L171.439,31.646 L179.325,32.792 L173.619,38.354 L174.966,46.208 L167.913,42.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M96.5,72.5 L120.5,72.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-dasharray="3,3" stroke-linejoin="round"/>
+    <path d="M112.859,82.208 L114.206,74.354 L108.5,68.792 L116.386,67.646 L119.913,60.5 L123.439,67.646 L131.325,68.792 L125.619,74.354 L126.966,82.208 L119.913,78.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M232.859,82.208 L234.206,74.354 L228.5,68.792 L236.386,67.646 L239.913,60.5 L243.439,67.646 L251.325,68.792 L245.619,74.354 L246.966,82.208 L239.913,78.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M120.5,72.5 L240.5,72.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M108.5,108.5 L144.5,108.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-dasharray="3,3" stroke-linejoin="round"/>
+    <path d="M144.5,108.5 L216.5,108.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M136.859,118.208 L138.206,110.354 L132.5,104.792 L140.386,103.646 L143.913,96.5 L147.439,103.646 L155.325,104.792 L149.619,110.354 L150.966,118.208 L143.913,114.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M208.859,118.208 L210.206,110.354 L204.5,104.792 L212.386,103.646 L215.913,96.5 L219.439,103.646 L227.325,104.792 L221.619,110.354 L222.966,118.208 L215.913,114.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M156.5,48.5 L180.5,24.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M156.5,24.5 L180.5,48.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M228.5,60.5 L252.5,84.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M228.5,84.5 L252.5,60.5" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <text transform="matrix(1, 0, 0, 1, 88, 108)">
+      <tspan x="-8.68" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">B3</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 76, 72)">
+      <tspan x="-8.68" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">B2</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 16, 36)">
+      <tspan x="-8.68" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">B1</tspan>
+    </text>
+    <g>
+      <path d="M108.5,144.5 L108.5,129.9" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M108.5,129.9 L112.7,132.7 L108.5,121.5 L104.3,132.7 z" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+    <g>
+      <path d="M144.5,144.5 L144.5,129.9" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M144.5,129.9 L148.7,132.7 L144.5,121.5 L140.3,132.7 z" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+    <g>
+      <path d="M216.5,144.5 L216.5,129.9" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M216.5,129.9 L220.7,132.7 L216.5,121.5 L212.3,132.7 z" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+    <text transform="matrix(1, 0, 0, 1, 214, 156)">
+      <tspan x="-8.162" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">T1</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 148, 156)">
+      <tspan x="-8.162" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">T0</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 102, 156)">
+      <tspan x="-20.615" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">Arrive</tspan>
+    </text>
+  </g>
+</svg>

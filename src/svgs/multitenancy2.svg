@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="256" height="256" viewBox="0, 0, 256, 256">
+  <g id="Layer_1">
+    <path d="M37.206,12.5 L227.794,12.5 C234.811,12.5 240.5,19.305 240.5,27.7 L240.5,225.3 C240.5,233.695 234.811,240.5 227.794,240.5 L37.206,240.5 C30.189,240.5 24.5,233.695 24.5,225.3 L24.5,27.7 C24.5,19.305 30.189,12.5 37.206,12.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M60.5,34.9 L84.5,34.9 C91.127,34.9 96.5,39.914 96.5,46.1 L96.5,146.9 C96.5,153.086 91.127,158.1 84.5,158.1 L60.5,158.1 C53.873,158.1 48.5,153.086 48.5,146.9 L48.5,46.1 C48.5,39.914 53.873,34.9 60.5,34.9 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M120.5,34.9 L144.5,34.9 C151.127,34.9 156.5,39.914 156.5,46.1 L156.5,146.9 C156.5,153.086 151.127,158.1 144.5,158.1 L120.5,158.1 C113.873,158.1 108.5,153.086 108.5,146.9 L108.5,46.1 C108.5,39.914 113.873,34.9 120.5,34.9 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M180.5,34.9 L204.5,34.9 C211.127,34.9 216.5,39.914 216.5,46.1 L216.5,146.9 C216.5,153.086 211.127,158.1 204.5,158.1 L180.5,158.1 C173.873,158.1 168.5,153.086 168.5,146.9 L168.5,46.1 C168.5,39.914 173.873,34.9 180.5,34.9 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M132.5,228.5 C86.108,228.5 48.5,217.755 48.5,204.5 C48.5,191.245 86.108,180.5 132.5,180.5 C178.892,180.5 216.5,191.245 216.5,204.5 C216.5,217.755 178.892,228.5 132.5,228.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <g>
+      <path d="M73.466,172.158 C75.455,185.616 80.966,204.265 96.239,204.265 C120.134,204.265 132.082,204.265 155.978,204.265 C171.076,204.265 176.634,186.649 178.681,173.677" fill-opacity="0" stroke="currentColor" stroke-width="3"/>
+      <path d="M77.652,171.811 L72.541,160.996 L69.28,172.505 M73.466,172.158 L72.541,160.996" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+      <path d="M182.864,174.046 L179.663,162.52 L174.497,173.309 M178.681,173.677 L179.663,162.52" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+    <g>
+      <path d="M84.913,173.248 C86.276,181.892 89.3,191.481 96.01,191.481 C108.226,191.481 108.226,191.481 120.441,191.481 C127.306,191.481 130.313,180.977 131.63,171.775" fill-opacity="0" stroke="currentColor" stroke-width="3"/>
+      <path d="M89.099,172.903 L83.992,162.086 L80.727,173.594 M84.913,173.248 L83.992,162.086" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+      <path d="M135.818,172.092 L132.476,160.607 L127.442,171.458 M131.63,171.775 L132.476,160.607" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+  </g>
+</svg>

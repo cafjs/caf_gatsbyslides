@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="512" height="256" viewBox="0, 0, 512, 256">
+  <g id="Layer_1">
+    <g>
+      <path d="M216.5,144.5 C143.598,144.5 84.5,117.637 84.5,84.5 C84.5,51.363 143.598,24.5 216.5,24.5 C289.402,24.5 348.5,51.363 348.5,84.5 C348.5,117.637 289.402,144.5 216.5,144.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <text fill="currentColor" transform="matrix(1, 0, -0, 1, 227.891, 57.156)">
+        <tspan x="-68.975" y="7.925" font-family="Avenir-Black" font-size="25">bar-myapp</tspan>
+      </text>
+    </g>
+    <g>
+      <path d="M306.665,151.2 L308.57,140.093 L300.5,132.226 L311.652,130.606 L316.64,120.5 L321.627,130.606 L332.78,132.226 L324.71,140.093 L326.615,151.2 L316.64,145.956 z" fill="currentColor"/>
+      <path d="M306.665,151.2 L308.57,140.093 L300.5,132.226 L311.652,130.606 L316.64,120.5 L321.627,130.606 L332.78,132.226 L324.71,140.093 L326.615,151.2 L316.64,145.956 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <path d="M348.5,168.5 L360.5,168.5 C367.127,168.5 372.5,173.873 372.5,180.5 L372.5,240.5 C372.5,247.127 367.127,252.5 360.5,252.5 L348.5,252.5 C341.873,252.5 336.5,247.127 336.5,240.5 L336.5,180.5 C336.5,173.873 341.873,168.5 348.5,168.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M56.482,168.165 L68.482,168.165 C75.11,168.165 80.482,173.538 80.482,180.165 L80.482,240.165 C80.482,246.793 75.11,252.165 68.482,252.165 L56.482,252.165 C49.855,252.165 44.482,246.793 44.482,240.165 L44.482,180.165 C44.482,173.538 49.855,168.165 56.482,168.165 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <g>
+      <path d="M96.5,120.5 L120.5,120.5 L120.5,144.5 L96.5,144.5 z" fill="currentColor"/>
+      <path d="M96.5,120.5 L120.5,120.5 L120.5,144.5 L96.5,144.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <path d="M72.5,168.5 C141.5,84.5 181.645,84.5 223.045,84.5 C271.867,84.5 320.689,135.386 339.936,157.946" fill-opacity="0" stroke="currentColor" stroke-width="3"/>
+      <path d="M336.674,160.593 L346.993,166.643 L343.197,155.3 M339.936,157.946 L346.993,166.643" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+    <g>
+      <path d="M158.133,98.436 L185.428,98.436 L185.428,115.406 L158.133,115.406 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M158.133,98.436 L167.231,106.921 L176.33,106.921 L185.428,98.436" fill-opacity="0" stroke="currentColor" stroke-width="3"/>
+    </g>
+    <text transform="matrix(1, 0, 0, 1, 171.852, 125.407)">
+      <tspan x="-27.976" y="4" font-family="Avenir-Black" font-size="16" fill="currentColor">foo-ca1</tspan>
+    </text>
+    <text transform="matrix(0, 1, -1, 0, 62.961, 207.144)">
+      <tspan x="-27.976" y="4" font-family="Avenir-Black" font-size="16" fill="currentColor">foo-ca1</tspan>
+    </text>
+    <g>
+      <path d="M384.5,84.5 L444.5,12.5 L504.5,84.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <text fill="currentColor" transform="matrix(1, 0, -0, 1, 448.13, 67.658)">
+        <tspan x="-34.975" y="7.925" font-family="Avenir-Black" font-size="25">Policy</tspan>
+      </text>
+    </g>
+    <g>
+      <path d="M385.904,84.621 C359.96,104.562 345.292,115.854 337.001,122.246" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-dasharray="9,6"/>
+      <path d="M334.432,118.924 L328.142,129.098 L339.571,125.568 M337.001,122.246 L328.142,129.098" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-opacity="1"/>
+    </g>
+  </g>
+</svg>

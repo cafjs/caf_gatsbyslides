@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="512" height="256" viewBox="0, 0, 512, 256">
+  <g id="Layer_1">
+    <g>
+      <path d="M24.5,168.5 L396.5,168.5 L396.5,240.5 L24.5,240.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <text fill="currentColor" transform="matrix(1, 0, -0, 1, 210, 204)">
+        <tspan x="-68.975" y="7.925" font-family="Avenir-Black" font-size="25">Trusted Bus</tspan>
+      </text>
+    </g>
+    <g>
+      <path d="M24.5,96.5 L192.5,96.5 L192.5,168.5 L24.5,168.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <text fill="currentColor" transform="matrix(1, 0, -0, 1, 108, 132)">
+        <tspan x="-67.363" y="7.925" font-family="Avenir-Black" font-size="25">SharedMap</tspan>
+      </text>
+    </g>
+    <g>
+      <path d="M192.5,96.5 L324.5,96.5 L324.5,168.5 L192.5,168.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <text fill="currentColor" transform="matrix(1, 0, -0, 1, 258, 132)">
+        <tspan x="-45.15" y="7.925" font-family="Avenir-Black" font-size="25">Pub-Sub</tspan>
+      </text>
+    </g>
+    <g>
+      <path d="M24.5,24.5 L396.5,24.5 L396.5,96.5 L24.5,96.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <text fill="currentColor" transform="matrix(1, 0, -0, 1, 210, 60)">
+        <tspan x="-77.562" y="7.925" font-family="Avenir-Black" font-size="25">Multi-Tenancy</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

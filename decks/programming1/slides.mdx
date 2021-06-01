@@ -63,11 +63,8 @@ Inspired by
 ###  Build <ins>everything</ins> with hierarchies of components
 
 * Deterministic asynchronous creation
-
 * Supervision trees
-
 * Navigating the hierarchy
-
 * Describing hierarchies with JSON
 
 ---
@@ -81,7 +78,6 @@ exports.newInstance = async ($, spec) => ...
 ```
 
 * Never block the main loop
-
 * Swap implementations without modifying code
 
 ---
@@ -129,9 +125,7 @@ exports.newInstance = async ($, spec) => ...
 ### Navigating the hierarchy
 
 * Siblings in **`this.$`**
-
 * Topmost <ins>visible</ins> component in **`this.$._`**
-
 * Application code uses security proxies
 
 ```js
@@ -307,9 +301,9 @@ caf.init(module);
 
 ### Request serialization is a <ins>cluster-wide</ins> property
 
-* At most **one** active CA with a given name
-    * **Hundreds** of node.js processes across **many** servers
-* Request serialization across multiple asynchronous steps
+* **Hundreds** of node.js processes across **many** servers
+  * But at most **one** active CA with a given name
+* Serialized across multiple asynchronous steps
 
 
 ---
@@ -319,7 +313,7 @@ caf.init(module);
 
 <SplitCode>
 
- No races
+### No races
 
 ```js
 const caf = require('caf_core');
@@ -351,10 +345,10 @@ caf.init(module);
 
 ### Transactional changes to private state
 
-* Scope of the transaction
-  *  `N` asynchronous steps to process **one** request
-* Rollback changes on error
-* Commits after checkpointing with Redis
+* Scope of the transaction is **one** request
+  *  Multiple asynchronous steps
+* Rollback state changes on error
+* Commit changes after checkpointing (Redis)
 
 ---
 
@@ -363,9 +357,14 @@ caf.init(module);
 
 <SplitCode>
 
+<div>
+
+#### Rollback on Error
+
 * Application Errors
 * Unrecoverable Errors
-* Both rollback
+
+</div>
 
 
 ```js
@@ -402,9 +401,10 @@ caf.init(module);
 
 * Private state <ins>**always**</ins> consistent with external commitments
 * Transactional plugins
-  * Mediate to delay externalization <ins>**after**</ins> commit
-  * Make actions idempotent for safe retry
-  * Combine with a two-phase commit protocol
+  * Delay externalization <ins>**after**</ins> commit
+  * Make actions safe to retry
+  * After failure, redo checkpointed actions
+* Combine plugins with a two-phase commit protocol
 
 ---
 
@@ -413,9 +413,14 @@ caf.init(module);
 
 <SplitCode>
 
+<div>
+
+**Transactional Plugin**
+
 * Ignore *notify* on error
 * Resend after crash
 
+</div>
 
 ```js
 const caf = require('caf_core');
@@ -469,11 +474,20 @@ https://www.cafjslabs.com/docs/documentation#cloud-assistant
 
 ### Autonomous Cloud Assistant
 
+<SplitCode>
+<WindMill width="90%" height="90%" />
+
+
 * `__ca_pulse__()`
 * Sessions
-  * Add notification queues for offline clients
-  * Session name, chosen by the client, matches queue name
-  * Leaky queues managed by user code
+  * Client picks session name
+    * Easy to remember
+    * Continuity across client devices
+  * Notification queues for offline clients
+    * Queue selected by session name
+    * Queue size managed by user code
+
+</SplitCode>
 
 ---
 
@@ -482,8 +496,13 @@ https://www.cafjslabs.com/docs/documentation#cloud-assistant
 
 <SplitCode>
 
-<div style={{display:"flex", 'justify-content':"center"}} >
-<WindMill width="90%" height="90%" />
+<div>
+
+#### Notifications
+
+* `limitQueue()`
+* `notify()`
+
 </div>
 
 ```js
@@ -514,9 +533,15 @@ caf.init(module);
 
 <SplitCode>
 
-* Notification groups
+<div>
+
+#### Notification groups
+
 * On-demand queues
+  * `getCounter()`
 * RegExp for names
+
+</div>
 
 ```js
 const caf = require('caf_core');
@@ -608,9 +633,14 @@ https://root-hello.cafjs.com/#from=foo-ca1&ca=foo-ca1&token=Hs1...
 
 <SplitCode>
 
-* Request-response
+<div>
+
+#### Request-Response
+
 * Magic methods
 * Error handling
+
+</div>
 
 ```js
 const caf_cli = require('caf_core').caf_cli;
@@ -639,9 +669,14 @@ s.onclose = function(err) {
 
 <SplitCode>
 
-* Notifications
+<div>
+
+### Notifications
+
 * `session=admin`
 * `onmessage()`
+
+</div>
 
 ```js
 const caf_cli = require('caf_core').caf_cli;
@@ -693,7 +728,7 @@ s.onclose = function(err) {
   * Notification groups
 * Client Library
   * Authentication
-  * Request/response
+  * Request-response
   * Notifications
 
 </div>

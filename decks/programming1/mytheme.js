@@ -37,5 +37,8 @@ export default {
       h4: {
           textTransform: 'none',
       },
+      h5: {
+          textTransform: 'none',
+      },
   },
 }
