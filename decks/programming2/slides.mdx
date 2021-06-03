@@ -152,9 +152,9 @@ antlai@cafjs.com
 ## Authorization
 
 * Access control check at the destination
-  * **before** calling a CA method
+  * **Before** calling a CA method
 * Make the caller CA name visible while the method executes
-* Also enforced for external calls (client library)
+* Checks mirrored for external calls (client library)
 
 ---
 
@@ -164,8 +164,9 @@ antlai@cafjs.com
 
 ### <ins>Trust No One</ins>
 
-* Only the owner can invoke methods using the client library
-  * No *Trusted Bus* interactions
+* Only the CA owner can call its methods,
+  * but using the client library,
+  * since no *Trusted Bus* interactions are allowed
 * If nothing works...
   * check the security policy first!
 
@@ -178,7 +179,7 @@ antlai@cafjs.com
 
 <div>
 
-**Simple Rules**
+### Simple Rules
 
 * Local namespace
   * `antonio-ca1`
