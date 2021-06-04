@@ -110,7 +110,8 @@ exports.newInstance = async ($, spec) => ...
 
 ### Supervision trees
 
-* Parent periodically checks children
+* Deep health checks
+  * Parent periodically checks children
 * Recovery strategies
    * Shutdown and restart all
    * Restart only failed ones
@@ -479,13 +480,12 @@ https://www.cafjslabs.com/docs/documentation#cloud-assistant
 
 
 * `__ca_pulse__()`
-* Sessions
-  * Client picks session name
-    * Easy to remember
-    * Continuity across client devices
-  * Notification queues for offline clients
-    * Queue selected by session name
-    * Queue size managed by user code
+* Notification queues for offline clients
+  * Client picks <ins>easy to remember</ins> session name
+    * Continuity across client devices,
+    * or different for each device
+  * Queue selected by session name
+  * Queue size managed by user code
 
 </SplitCode>
 
@@ -605,10 +605,10 @@ https://www.cafjslabs.com/docs/documentation#autonomous
 
 * JSON Web Token embedded in URL is
   * self-describing,
-  * short-lived,
   * signed by the *Accounts* service,
-  * managed in the Cloud by the *Launcher* app,
-  * and locally validated with an injected public key
+  * locally validated with an injected public key,
+  * short-lived,
+  * and managed in the Cloud by the *Launcher* app
 * Single Sign-On with attenuated tokens,
   * forming a meet-semilattice
 
