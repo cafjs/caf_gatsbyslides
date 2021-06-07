@@ -46,16 +46,6 @@ antlai@cafjs.com
 * Client Library
 
 ---
-<CafjsHeader/>
-
-## Part 2 covers
-
-* Trusted Bus
-* SharedMap
-* Publish-Subscribe
-* Caf.js Lite (IoT)
-
----
 
 <CafjsHeader/>
 
@@ -71,6 +61,8 @@ antlai@cafjs.com
 ---
 
 ## Multi-tenancy
+
+<CafjsHeader/>
 
 <SplitImage>
 
@@ -106,8 +98,10 @@ antlai@cafjs.com
 <SplitImage>
 
 * Repeatability and control
+  * Trusted Bus
 * High-level communication
-
+  * SharedMap
+  * Publish-Subscribe
 
 <Multi3 width="100%" height="100%" />
 
@@ -122,9 +116,10 @@ antlai@cafjs.com
 
 <SplitCode>
 
-* Mediates CA to CA interactions
-* Enforces access control
-* Single app **only**
+* CA to CA interaction,
+* within **one** app,
+* with access control
+
 
 <TrustedBus width="100%" height="100%" />
 
@@ -136,14 +131,15 @@ antlai@cafjs.com
 
 ## Authentication
 
-* No tokens, no crypto
-  * Client library authentication **not enough**
+* Client library authentication **not enough**
+  * No tokens, no crypto
 * How?
-  * Trusted endpoints add CA name to request
-  * Injected requests cannot be modified
+  * Trusted endpoints add source CA name to request,
+  * and injected requests cannot be modified
 * Implementation
+  * Security proxies wrap *Trusted Bus* plugins
   * Kubernetes network policy
-  * Security proxies in plugins
+
 
 ---
 
@@ -151,10 +147,11 @@ antlai@cafjs.com
 
 ## Authorization
 
-* Access control check at the destination
-  * **Before** calling a CA method
-* Make the caller CA name visible while the method executes
-* Checks mirrored for external calls (client library)
+* Before calling a CA method,
+  * check access control policy
+* While the method executes,
+  * query the caller CA name
+* Same policy for client library calls
 
 ---
 
@@ -164,9 +161,9 @@ antlai@cafjs.com
 
 ### <ins>Trust No One</ins>
 
-* Only the CA owner can call its methods,
-  * but using the client library,
-  * since no *Trusted Bus* interactions are allowed
+* No *Trusted Bus* interactions
+* Only the owner can call CA methods,
+  * using the client library
 * If nothing works...
   * check the security policy first!
 
@@ -181,12 +178,13 @@ antlai@cafjs.com
 
 ### Simple Rules
 
-* Local namespace
+* Local namespaces
   * `antonio-ca1`
-* Based on ownership
+* Ownership rules
   * `antonio`
   * `security.SELF`
 * Group methods
+  * [methods]
   * `null` for any
 
 </div>
@@ -219,10 +217,10 @@ caf.init(module);
 
 ## Aggregate Rules
 
-* Dynamic policies
-  * Define a group with a `SharedMap`
+* Dynamic policies with groups
+  * Implemented with `SharedMaps`
 * Sharing a group with many CAs
-  * Create replicas of a `SharedMap`
+  * Replicating `SharedMaps`
 * Group membership maintained by a team
   * Linking between `SharedMaps`
 
@@ -232,9 +230,8 @@ caf.init(module);
 
 ### Much more
 
-* Aggregate Rules
-  * Linked local namespaces (inspired by SDSI)
-  * Delegation
+* Decentralized authorization (inspired by SDSI)
+  * Linked local namespaces for delegation
 
 https://www.cafjslabs.com/docs/documentation#trusted-bus
 
