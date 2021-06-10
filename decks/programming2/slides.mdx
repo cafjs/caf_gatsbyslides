@@ -561,6 +561,37 @@ exports.methods = {
   * Error rollbacks changes
   * `this.$`, `SharedMap`,...
 
+---
+
+<CafjsHeader/>
+
+<SplitCode>
+
+<div>
+
+**iot_methods.js**
+
+</div>
+
+```js
+const caf_iot = require('caf_iot');
+exports.methods = {
+  async __iot_setup__() {
+    this.state.count = this.toCloud.get('count') || 0;
+    return [];
+  },
+  async __iot_loop__() {
+    const msg = this.fromCloud.get('msg') || 'Count:';
+    this.$.log.debug(msg + this.state.count);
+    this.state.count = this.state.count + 1;
+    this.toCloud.set('count', this.state.count);
+    return [];
+  }
+};
+caf_iot.init(module);
+```
+
+</SplitCode>
 
 ---
 
@@ -625,9 +656,9 @@ caf_iot.init(module);
   * UTC time
   * 100K+ devices with 2s
   * most <100msec
-* Recovery
-  * Bundle execution semantics
-  * Late actions
+* Bundle execution semantics
+  * Recovery actions
+  * Late bundles
   * NOW and NOW_SAFE
 
 **Not for safety critical apps!**
