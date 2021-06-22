@@ -61,11 +61,15 @@ Framework + Custom Platform -> Caf.js Cloud
 * Every second a busy autonomous Cloud Assistant (CA)
   * computes for 1 millisecond,
   * and checkpoints < 500 bytes (latency-sensitive)
-* Cost per year of 31.536M invocations
-  * *Google Cloud Run*: $88/year
-    * CPU+request: 31536\*0.1\*$0.024+ 31.536\*$0.4
-  * *Google Cloud Firestore*: $56/year
-    * writes: 315.36\*$0.18.
+
+---
+<CafjsHeader/>
+
+### Cost per year of 31.536M invocations
+  * *Google Cloud Run*: $88 per year
+    * CPU+request: 31536\*0.1\*$0.024+31.536\*$0.4
+  * *Google Cloud Firestore*: $56 per year
+    * writes: 315.36\*$0.18
   * Total of more than **$144 per year**
 
 ---
@@ -76,7 +80,7 @@ Framework + Custom Platform -> Caf.js Cloud
 * Gold Plan (+200 KB memory and 1.75 GB egress)
   *  **$0.85 per year**
 * Everything can have a CA
-  * A billion CAs with a few thousand servers
+  * A **billion** CAs with a few thousand servers
 
 ---
 
@@ -91,10 +95,9 @@ Framework + Custom Platform -> Caf.js Cloud
 ### Domain-Specific PaaS
 
 * Only run apps written for the framework
-* Assume
+* Assume many things
   * memory/compute/communication ratios,
   * interaction patterns,
-  * security policies,
   * support services,...
 * Simplify, simplify, simplify...
 * Co-design framework and platform together
@@ -103,19 +106,10 @@ Framework + Custom Platform -> Caf.js Cloud
 
 <CafjsHeader/>
 
-### Build an ASIC not a general-purpose CPU
-* Small team, much lower investment
-* Power efficiency
-* But fixed function
-
----
-
-<CafjsHeader/>
-
 ## This talk
-* Useful fixed function
+* Why Cloud Assistants?
 * Programming a Cloud Assistant
-* Intro to Caf.js Cloud
+* Caf.js Cloud
 * Live Demo
 
 ---
@@ -145,7 +139,7 @@ Framework + Custom Platform -> Caf.js Cloud
   * Integrate physical devices with AR/VR
 * How?
   * Reverse Service Worker (RSW)
-  * Three-way Isomorphic Framework
+  * Three-way isomorphic framework
 
 ---
 
@@ -177,6 +171,20 @@ https://youtu.be/VwRbf2DOGUk
 
 ---
 
+<CafjsHeader/>
+
+###  Autonomous Compute
+
+* Launch long term activities in the Cloud
+  * request/response + stream of events
+* Use cases
+  * Continuous GraphQL queries
+  * Cloud-based multitasking
+* How?
+  * Proactive Server Side Rendering (PSSR)
+
+---
+
 ### Proactive Server Side Rendering Demo
 
 <img src={ProactiveDemo} width="50%" height="50%" />
@@ -193,6 +201,21 @@ https://youtu.be/y2DaniE30nE
 
 ---
 
+<CafjsHeader/>
+
+### Reliable Service Orchestration
+
+* Simplify service integration with
+  * restartable sequencing,
+  * safe management of API credentials,
+  * and consistent caching of dynamic content
+* Use cases
+  * JAMstack
+* How?
+  * Transactional Actors/plugins
+
+---
+
 ### Reliable PayPal Checkout Demo
 
 <img src={PaypalDemo} width="45%" height="45%" />
@@ -206,6 +229,22 @@ https://youtu.be/rZ8_SJUCS7Y
 ## Collaborative Multi-Tenancy
 
 <img src={ImgPath4} width="60%" height="60%" />
+
+---
+
+<CafjsHeader/>
+
+### Collaborative Multi-Tenancy
+
+* Extend multi-tenancy
+  * to bootstrap trust between strangers,
+  * and help them to communicate and share
+* Use cases
+  * Worldwide coordination of device actions
+* How?
+  * Trusted Bus
+  * SharedMap and Publish-Subscribe
+  * Timed Bundles
 
 ---
 
@@ -232,9 +271,9 @@ https://youtu.be/TxEfYMWr8iM
 
 **No races**
 
-* Actor Model
-* Serialization
-  * Cluster-wide
+* Actor Model with
+  cluster-wide serialization
+
 
 </div>
 
@@ -272,9 +311,9 @@ caf.init(module);
 
 **Rollback on Error**
 
-* Transactions
-  * Redis checkpoint
-* External Consistency
+* Transaction with
+  a Redis checkpoint
+* External consistency
 
 </div>
 
@@ -313,8 +352,8 @@ caf.init(module);
 
 #### Client
 
+* Request/response
 * Magic methods
-* Error handling
 
 </div>
 
@@ -415,16 +454,13 @@ Currently in beta, only for the adventurous
 * Manage subscription payments
   * Take a cut for infrastructure,
   *  and give the rest to the programmer
-* Advantages
-  * Predictable profit per CA
-  * No late bills, no surprises
 
 ---
 
 <CafjsHeader/>
 
 ### Similar to an app store
-### but <ins>managing your back-end</ins>
+### but <ins>providing your back-end</ins>
 
 ---
 
@@ -445,28 +481,18 @@ Currently in beta, only for the adventurous
 * No explicit approvals
   * but should follow our terms and conditions
 
-
----
-
-<CafjsHeader/>
-
-### Incubator Mode
-
-* Minimal resources for a new app
-* Enable extremely low maintenance cost
-  * Less than $6 per year (one unit a week)
-
 ---
 
 <CafjsHeader/>
 
 ### Bootstrapping with No Money
 
-* No credit card or bank account
+
 * A few free units when you sign up
+  * No credit card or bank account
 * Deploy your app
 * Enough friends register for your app
-  * Orbit velocity!
+  * one unit per week is orbit velocity
 * Grow with profit-as-you-go
 * Transfer units for real money
   * Any peer-to-peer payment system
@@ -538,6 +564,15 @@ E-mail: antlai@cafjs.com
 
 <CafjsHeader/>
 
+### Build an ASIC not a general-purpose CPU
+* Small team, much lower investment
+* Power efficiency
+* But fixed function
+
+---
+
+<CafjsHeader/>
+
 ## Three-way Isomorphic
 
 <SplitCode>
@@ -581,6 +616,16 @@ E-mail: antlai@cafjs.com
 <Iso3 width="90%" height="90%" />
 
 </SplitCode>
+
+---
+
+<CafjsHeader/>
+
+### Incubator Mode
+
+* Minimal resources for a new app
+* Enable extremely low maintenance cost
+  * Less than $6 per year (one unit a week)
 
 
 ---
