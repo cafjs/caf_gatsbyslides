@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="330" height="256" viewBox="0, 0, 330, 256">
+  <g id="Layer_1">
+    <path d="M96.5,192.5 L168.5,84.5 L240.5,192.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M276.5,228.5 C256.618,228.5 240.5,212.382 240.5,192.5 C240.5,172.618 256.618,156.5 276.5,156.5 C296.382,156.5 312.5,172.618 312.5,192.5 C312.5,212.382 296.382,228.5 276.5,228.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M60.5,228.5 C40.618,228.5 24.5,212.382 24.5,192.5 C24.5,172.618 40.618,156.5 60.5,156.5 C80.382,156.5 96.5,172.618 96.5,192.5 C96.5,212.382 80.382,228.5 60.5,228.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M168.5,84.5 C148.618,84.5 132.5,68.382 132.5,48.5 C132.5,28.618 148.618,12.5 168.5,12.5 C188.382,12.5 204.5,28.618 204.5,48.5 C204.5,68.382 188.382,84.5 168.5,84.5 z" fill-opacity="0" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <text transform="matrix(1, 0, 0, 1, 167.488, 50)">
+      <tspan x="-19.313" y="0" font-family="Avenir-Black" font-size="14" fill="currentColor">Cloud</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 60, 192)">
+      <tspan x="-27.468" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">Browser</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 276, 192)">
+      <tspan x="-22.435" y="2" font-family="Avenir-Black" font-size="14" fill="currentColor">Device</tspan>
+    </text>
+  </g>
+</svg>

@@ -4,6 +4,10 @@ import {prism} from '@mdx-deck/themes'
 
 import CafjsHeader from '../../src/components/cafjsheader'
 
+import Iso0 from '../../src/svgs/iso0.svg'
+
+import SplitCode from '../../src/components/splitCode'
+import SplitImage from '../../src/components/splitImage'
 
 export const theme = {
     ...mytheme,
@@ -50,6 +54,19 @@ antlai@cafjs.com
 
 ### Market fragmentation
 
+
+<div>
+
+|  |  |  |  |  |
+|:----:|:------:|:-----:|:-----:|:-----:|
+| Telemedicine | Kids Toys | Adult Toys | Smart Lights | Virtual Collab Tools |
+| Fitness | Online Learning | On-the-job Training | DIY | Retail |
+| Real Estate | Movie Streaming | Homestay Vacation Rental | Gaming | Factory Sensors |
+| Live Events | Mental Health | Digital Twins | Drones | Smart Cities
+
+</div>
+
+
 ---
 
 <CafjsHeader/>
@@ -57,10 +74,19 @@ antlai@cafjs.com
 ### Software complexity
 
 
+<SplitCode>
+
 * Security
 * Reliability
 * Management
-  * Updating, deploying, monitoring,...
+  * Updating,
+  * deploying,
+  * monitoring,...
+
+
+<Iso0 width="85%" height="85%" />
+
+</SplitCode>
 
 ---
 
@@ -72,7 +98,7 @@ antlai@cafjs.com
     * wakes up once a second,
     * computes for one millisecond,
     * and checkpoints 500 bytes
-  * Total of more than **$144 per year** per device
+  * Costs more than **$144 per year**
     * *Google Cloud Run*: $88 per year
     * *Google Cloud Firestore*: $56 per year
 
@@ -121,8 +147,7 @@ Caf.js Framework + Custom Platform -> Caf.js Cloud
   * Standard chrome tools
 * Client/Cloud/Device handled as a single unit
   * Emulate cloud and device on your laptop
-  * Build with one command
-  * Deploy in the cloud one container image
+  * Build and deploy in the cloud **one** container image
 * Transparently providing reliability, security, and management
 
 ---
@@ -137,21 +162,36 @@ Caf.js Framework + Custom Platform -> Caf.js Cloud
   * Baseline app maintenance cost is about **$6 per year**
   * Secret sauce
     * Custom platform codesigned with the framework
-
-
----
-
-<CafjsHeader/>
-
-### Monetization strategy
+    * Incubator mode
 
 ---
 
 <CafjsHeader/>
 
-## Our revenue model
+### Monetization strategy with Caf.js Cloud
 
-3x infrastructure costs
+* Manage subscription payments per device
+  * Take a cut for infrastructure,
+  * give the rest to the programmer,
+  * and flex resources based on #devices and plan
+* Like an app store but
+  * providing your back-end,
+  * and using the browser (Web App)
+* **Profit-as-you-go** not pay-as-you-go
+
+---
+
+<CafjsHeader/>
+
+## Caf.js Cloud
+
+---
+
+<CafjsHeader/>
+
+### Our revenue model
+
+At least 3x infrastructure costs
 
 What we make is not based on what the programmer makes
 
@@ -167,3 +207,32 @@ What we make is not based on what the programmer makes
   * or forward to your website for subscriptions
 * No explicit approvals
   * but should follow our terms and conditions
+
+---
+
+<CafjsHeader/>
+
+
+### Bootstrapping an App with No Money
+
+* A few free units when you sign up
+  * No credit card or bank account
+* Deploy your app
+* Friends register for your app
+  * one unit (10¢ + fees) per week is orbital velocity
+* Grow with profit-as-you-go
+* Transfer units for real money
+  * Any peer-to-peer payment system
+---
+
+<CafjsHeader/>
+
+### What this Means...
+
+* A kid in Nigeria,
+  * with <ins>zero</ins> financing,
+  * can create a very profitable,
+  * and sustainable business,
+  * purely based on <ins>talent</ins>
+
+---
