@@ -41,3 +41,8 @@ export const previous = context => {
     }
     previousSlide(context);
 };
+
+export const jump = (slug, index,  next) => {
+    postInfo(index, next, 0, 'jump');
+    navigate([slug, next].join('/'));
+}
