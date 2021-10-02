@@ -3744,6 +3744,36 @@ cacheable-request@^7.0.1:
     normalize-url "^4.1.0"
     responselike "^2.0.0"
 
+caf_gatsby-theme-mdx-deck@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/caf_gatsby-theme-mdx-deck/-/caf_gatsby-theme-mdx-deck-4.1.0.tgz#bc8d6e8b9c92d67d8f37df99dd4a9464dda43c64"
+  integrity sha512-7HFaEoDu0F0UIFiR0BegFoswaJZKjMHjoIUT+ufbFUXjIAiLfglTOwYjm8xitgWnDhGCX1FsSYRNiK2pgZpgdw==
+  dependencies:
+    "@emotion/core" "^10.0.14"
+    "@mdx-deck/themes" "^4.1.0"
+    "@mdx-js/mdx" "^1.0.21"
+    "@mdx-js/react" "^1.0.21"
+    "@reach/router" "^1.2.1"
+    debug "^4.1.1"
+    gatsby "^2.13.24"
+    gatsby-plugin-catch-links "^2.1.0"
+    gatsby-plugin-compile-es6-packages "^2.0.0"
+    gatsby-plugin-emotion "^4.1.0"
+    gatsby-plugin-mdx "^1.0.13"
+    gatsby-plugin-react-helmet "^3.1.0"
+    gatsby-plugin-theme-ui "^0.3.0"
+    gatsby-remark-import-code "^0.1.1"
+    gatsby-source-filesystem "^2.1.3"
+    hhmmss "^1.0.0"
+    lodash.get "^4.4.2"
+    lodash.merge "^4.6.1"
+    mkdirp "^1.0.3"
+    react-helmet "^6.0.0-beta"
+    react-swipeable "^5.3.0"
+    remark-emoji "^2.0.2"
+    remark-unwrap-images "^1.0.0"
+    theme-ui "^0.3.1"
+
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/call-bind/-/call-bind-1.0.2.tgz#b1d4e89e688119c3c9a903ad30abb2f6a919be3c"
@@ -7124,36 +7154,6 @@ gatsby-telemetry@^1.10.2:
     lodash "^4.17.20"
     node-fetch "^2.6.1"
     uuid "3.4.0"
-
-gatsby-theme-mdx-deck@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-mdx-deck/-/gatsby-theme-mdx-deck-4.1.0.tgz#7b649f7e1d73292d02650ac6e8025e8d56b2a9d4"
-  integrity sha512-9we7A8whmkq0OMVrCQrOG571hwTIIWM3pZLHLVpdsJ+GHF8Wtt5p6go3eJXwsiYi/s+Hbzwq6YV54fJCQYHofQ==
-  dependencies:
-    "@emotion/core" "^10.0.14"
-    "@mdx-deck/themes" "^4.1.0"
-    "@mdx-js/mdx" "^1.0.21"
-    "@mdx-js/react" "^1.0.21"
-    "@reach/router" "^1.2.1"
-    debug "^4.1.1"
-    gatsby "^2.13.24"
-    gatsby-plugin-catch-links "^2.1.0"
-    gatsby-plugin-compile-es6-packages "^2.0.0"
-    gatsby-plugin-emotion "^4.1.0"
-    gatsby-plugin-mdx "^1.0.13"
-    gatsby-plugin-react-helmet "^3.1.0"
-    gatsby-plugin-theme-ui "^0.3.0"
-    gatsby-remark-import-code "^0.1.1"
-    gatsby-source-filesystem "^2.1.3"
-    hhmmss "^1.0.0"
-    lodash.get "^4.4.2"
-    lodash.merge "^4.6.1"
-    mkdirp "^1.0.3"
-    react-helmet "^6.0.0-beta"
-    react-swipeable "^5.3.0"
-    remark-emoji "^2.0.2"
-    remark-unwrap-images "^1.0.0"
-    theme-ui "^0.3.1"
 
 gatsby-transformer-sharp@^2.1.18:
   version "2.12.1"
