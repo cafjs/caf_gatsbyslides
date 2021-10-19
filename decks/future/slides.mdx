@@ -2,12 +2,18 @@ import mytheme from './mytheme.js';
 
 import {prism} from '@mdx-deck/themes'
 import ImgPath1 from '../../src/images/randy-fath-KyreMg96fuA-unsplash.jpg'
+import Implementing from '../../src/images/implementing.jpg'
+import HelloWorld from '../../src/images/helloworld.jpg'
 
 import Product from '../../src/svgs/product.svg'
 import Wab from '../../src/svgs/wab.svg'
-import OldArch from '../../src/svgs/oldArch.svg'
-import NewArch from '../../src/svgs/newArch.svg'
-
+import Vendor from '../../src/svgs/vendor.svg'
+import Breed from '../../src/svgs/breed.svg'
+import Mobile from '../../src/svgs/mobile.svg'
+import VR from '../../src/svgs/vr.svg'
+import Personalize from '../../src/svgs/personalize.svg'
+import Devices from '../../src/svgs/devices.svg'
+import World from '../../src/svgs/world.svg'
 
 import SplitCode from '../../src/components/splitCode'
 import SplitImage from '../../src/components/splitImage'
@@ -35,7 +41,7 @@ antlai@cafjs.com
 ### 1. Vendor Independence
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<Vendor width="85%" height="85%" />
 <div>
 
 * Change video API provider,
@@ -52,15 +58,15 @@ antlai@cafjs.com
 ### 2. Best of Breed
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<Breed width="95%" height="95%" />
 <div>
 
-* Independent app store
-  * Hosting
-  * Manage pay per use
-* Customize
-  * Branding
-  * Integrate with your APIs
+* Pick your "whiteboard" app
+  * from an independent store
+* Pay-per-use
+* Fully managed service
+* Customize app with
+  * branding + your APIs
 
 </div>
 
@@ -73,19 +79,19 @@ antlai@cafjs.com
 ### 3. Share Local Devices
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<Devices width="95%" height="95%" />
 <div>
 
-* Touch and Smell
+* Touch and smell
 * Telemedicine
 * Fitness
-* Smart Lights
-* Toys (Adult & Kids)
-* Car Diagnostics
-* Real Estate
-* Industrial Sensors
+* Smart lights
+* Toys (adult & kids)
+* Car diagnostics
+* Real estate
+* Industrial sensors
 * Digital Twins
-* ...
+* Many others...
 
 </div>
 
@@ -98,12 +104,12 @@ antlai@cafjs.com
 ### 4. Make a Global Party
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<World width="80%" height="80%" />
 <div>
 
 * Synchronize millions of actions
   * across the globe,
-  * most within a 100 msec window,
+  * accurately (most <100 msec jitter),
   * using global time (UTC),
   * or the video stream (replay).
 
@@ -118,15 +124,15 @@ antlai@cafjs.com
 ### 5. Make it Personal
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<Personalize width="95%" height="95%" />
 <div>
 
-* Each stream is slightly different
+* Each stream is different
   * Language
   * Local context
   * Preferences
   * Collective input
-  * Personalized Ads
+  * Personalized ads
 
 </div>
 
@@ -139,7 +145,7 @@ antlai@cafjs.com
 ### 6. Mobile First
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<Mobile width="40%" height="40%" />
 <div>
 
 * ONE window
@@ -161,12 +167,13 @@ antlai@cafjs.com
 ### 7. Transition to VR/AR
 
 <SplitImage>
-<Wab width="80%" height="80%" />
+<VR width="85%" height="85%" />
 <div>
 
-* Responsive design on steroids
-  * Best UI for the device
+* Pick best UI for the device
+  * Responsive design on steroids
 * Seamless integration
+  * with legacy devices in 2D
 
 </div>
 
@@ -179,10 +186,10 @@ antlai@cafjs.com
 ### Summary
 
 * Vendor independence
-* Best-of-breed, easy to customize, pay-per-use
+* Best-of-breed
 * Share local devices
 * Coordinate global actions in real-time
-* Personalize each stream
+* Personalize streams
 * Mobile-first design
 * Bridge to VR/AR
 
@@ -192,15 +199,19 @@ antlai@cafjs.com
 
 ### Caf.js Labs
 
-* Platform to create, host, and monetize collaboration apps
-  * WAB (Web App Background) architecture
-    * Two **independent** layers:
-        * *Top*
-          * **transparent**, with video/audio components
-        * *Background*
-          * **synchronized** Web App, runs **everywhere**
-    * Merge layers at the endpoints, not at the source
-  * Implemented with the Caf.js framework + Caf.js Cloud
+* Building a platform to **create**, **host**, and **monetize**
+  *  a new generation of collaboration apps,
+  * using the WAB (Web App Background) architecture,
+  * and implemented with the Caf.js framework + Caf.js Cloud
+
+---
+<CafjsHeader/>
+
+### WAB (Web App Background) Architecture
+
+<Wab width="70%" height="70%" />
+
+* Merge independent layers at the destination, not at the source
 
 ---
 
@@ -208,11 +219,33 @@ antlai@cafjs.com
 
 ### Learn More
 
+<div>
+
+Implementing the WAB Architecture with Caf.js
+
+<img src={Implementing} width="90%" height="90%" />
+
+https://youtu.be/bHo7lmurc2A
+
+</div>
+
 ---
 
 <CafjsHeader/>
 
 ### Learn More (Programmers)
+
+
+<div>
+
+"Hello World" WAB with Caf.js
+
+<img src={HelloWorld} width="95%" height="95%" />
+
+https://youtu.be/GxkEPjvy0b4
+
+</div>
+
 
 ---
 
