@@ -1,0 +1,447 @@
+import mytheme from './mytheme.js';
+
+import {prism} from '@mdx-deck/themes'
+import Protocol from '../../src/images/protocol.jpg'
+import Memory from '../../src/images/memory.jpg'
+import Register from '../../src/images/register.jpg'
+import Implementing from '../../src/images/implementing.jpg'
+import HelloWorld from '../../src/images/helloworld.jpg'
+
+import Iso1 from '../../src/svgs/iso1.svg'
+import Iso2 from '../../src/svgs/iso2.svg'
+import Iso3 from '../../src/svgs/iso3.svg'
+import TimedBundle from '../../src/svgs/timedbundle.svg'
+
+
+import SplitCode from '../../src/components/splitCode'
+import SplitImage from '../../src/components/splitImage'
+
+import CafjsHeader from '../../src/components/cafjsheader'
+
+export const theme = {
+    ...mytheme,
+    ...prism,
+}
+
+
+<CafjsHeader/>
+
+### Nine Things I Like About Caf.js
+
+Antonio Lain, Caf.js Labs
+
+antlai@cafjs.com
+
+---
+
+<CafjsHeader/>
+
+### Outline
+
+1. Stateful Lambdas
+2. External Consistency (Reliability)
+3. Proactive Programming
+4. Three-Way Isomorphic (IoT)
+5. Timed Bundles (IoT)
+6. SharedMaps (Comms)
+7. Linked Local Namespaces (Security)
+8. Profit-as-you-go (Caf.js Cloud)
+9. Unbundled P2P Payments (Caf.js Cloud)
+
+---
+
+<CafjsHeader/>
+
+### 1. Stateful Lambdas
+
+```javascript
+/* call(id, f, args_0) */
+   S_id_0 = {...}
+   f(id, args_0, S_id_0) -> [Out_0, S_id_1]
+/* call(id, f, args_1) */
+   f(id, args_1, S_id_1) -> [Out_1, S_id_2]
+```
+
+* Fold operation over a stream of inputs
+  * Identifier *id*
+  * Serverless function *f*
+  * State partition *S_id*
+
+---
+
+<CafjsHeader/>
+
+### 1. Stateful Lambdas (cont.)
+
+* Kilobytes
+  * Secrets, references, counters, state machine,...
+* Uses
+  * Orchestrate service API calls
+  * Actions in the physical world
+
+---
+
+<CafjsHeader/>
+
+### 1. Stateful Lambdas (cont.)
+
+* Serialization with Actors
+  * Hundreds of node.js processes
+  * Asynchronous steps per request
+* Cloud Assistant vs Actor
+
+---
+
+<CafjsHeader/>
+
+### 2. External Consistency
+
+```javascript
+/* call(id, f, args_1) */
+   f(id, args_1, S_id_1) -> [Out_1, S_id_2]
+   <Checkpoint S_id_2>
+/* call(id, f, args_2) */
+   f(id, args_2, S_id_2) -> [Out_2, S_id_3]
+   <CheckPoint S_id_3>
+```
+
+Not enough...
+
+---
+
+<CafjsHeader/>
+
+### 2. External Consistency (cont.)
+
+```javascript
+/* call(id, f, args_1) */
+   f(id, args_1, S_id_1) -> [Out_1, S_id_2]
+   <Checkpoint [Out_1, S_id_2]>
+   <Externalize Out_1>
+/* call(id, f, args_2) */
+   f(id, args_2, S_id_2) -> [Out_2, S_id_3]
+     ...
+```
+
+Transactional plugins to delay outputs
+
+---
+
+<CafjsHeader/>
+
+### 2. External Consistency (cont.)
+
+```javascript
+/* call(id, f, args_1) */
+   f(id, args_1, S_id_1) -> [Out_1, S_id_2]
+   <Checkpoint [Out_1, S_id_2]>
+   <Externalize Out_1>
+   <CRASH!>
+   <Externalize Out_1> (Idempotent)
+/* call(id, f, args_2) */
+   f(id, args_2, S_id_2) -> [Out_2, S_id_3]
+     ...
+```
+
+Transactional plugins for safe retry
+
+---
+
+<CafjsHeader/>
+
+### 3. Proactive Programming
+
+*  Reactive vs Proactive
+
+---
+
+<CafjsHeader/>
+
+### 3. Proactive Programming (cont.)
+
+* Lower latency with push
+  * PSSR (Proactive Server Side Rendering)
+* Cloud-based multi-tasking
+
+---
+
+<CafjsHeader/>
+
+### 3. Proactive Programming (cont.)
+
+* Local stream of pulse requests
+* 100x cheaper
+  * 1 per second/1 millisecond/500 bytes
+  * Google Cloud Run+Firestore $144 CA/year
+  * Cafjs Cloud Gold plan $0.85 CA/year
+
+---
+
+<CafjsHeader/>
+
+### 4. Three-Way Isomorphic
+
+<SplitCode>
+
+* Browser
+* Cloud
+* Device bridging code
+
+<Iso1 width="90%" height="90%" />
+
+</SplitCode>
+
+
+---
+
+<CafjsHeader/>
+
+### 4. Three-Way Isomorphic (cont.)
+
+<SplitCode>
+
+* Web Bluetooth API
+
+<Iso2 width="90%" height="90%" />
+
+</SplitCode>
+
+
+---
+
+<CafjsHeader/>
+
+### 4. Three-Way Isomorphic (cont.)
+
+<SplitCode>
+
+* Load testing
+* Impersonate
+* Public IP address
+
+<Iso3 width="90%" height="90%" />
+
+</SplitCode>
+
+---
+
+<CafjsHeader/>
+
+### 4. Three-Way Isomorphic (cont.)
+
+* Laptop-only development
+  * Emulate device
+  * Local cloud
+  * Chrome debugging tools
+* Replace low level with Web APIs
+  * Browserify
+
+
+---
+
+<CafjsHeader/>
+
+### 5. Timed Bundles
+
+<SplitImage>
+
+* Synchronize actions with
+  * global (UTC) time,
+  * in millions of devices,
+  * with <100 milliseconds jitter
+* Actions from **one** active bundle
+
+
+<TimedBundle width="95%" height="95%" />
+
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+### 5. Timed Bundles (cont.)
+
+* Decouple starting from arrival time
+  * scaling,
+  * and smooth transitions
+* Single bundle policy
+  * responsiveness,
+  * and recovery actions
+
+
+---
+
+<CafjsHeader/>
+
+### 5. Timed Bundles (cont.)
+
+* NTP fallback
+* Bundle creation with
+  * code introspection,
+  * and proactive programming
+
+---
+
+<CafjsHeader/>
+
+### 6. SharedMaps
+
+* Single-writer distributed data structure
+  * with cost effective replication
+* Internal actor state,
+  * which respects serialization
+* Custom replicated object
+* Cloud, browser, or IoT device
+
+
+---
+
+<CafjsHeader/>
+
+### 6. SharedMaps (cont.)
+
+* Single-writer
+  * Trusted bus policies
+* No untrusted code
+* One update per process
+
+---
+
+<CafjsHeader/>
+
+### 6. SharedMaps (cont.)
+
+* Transactional plugin
+* Redis backend
+* Immutable data structure
+* Javascript eval()
+
+---
+
+<CafjsHeader/>
+
+### 7. Linked Local Namespaces
+
+* SDSI
+* Name resolves to
+  * a resource (CA),
+  * a group of resources,
+  * a name in other namespace
+* Transitive closure
+
+---
+
+<CafjsHeader/>
+
+### 7. Linked Local Namespaces (cont.)
+
+* ACL with local names
+* Group membership delegation
+* Accounts service federation
+
+---
+
+<CafjsHeader/>
+
+### 7. Linked Local Namespaces (cont.)
+
+* Namespace with a SharedMap
+  * SharedMaps linking
+* AggregateMap
+* Fast lookups
+  * Trust is not transitive
+
+---
+
+<CafjsHeader/>
+
+### 8. Profit-as-you-go
+
+* Pay-per-invocation + Flex-based-on-load
+  * is Nitro+Glicerine
+* Predictable latency and lingering state
+* Caf.js Cloud
+  * Incubator mode (about 10c/week)
+  * Flex-based-on-#CAs and plan
+  * Managed subscription payments
+
+---
+
+<CafjsHeader/>
+
+### 8. Profit-as-you-go (cont.)
+
+* No credit card, no bank account,
+  * free units for orbital velocity,
+  * and no bills after that
+* The ultimate meritocratic platform
+  * it does not matter who you are,
+  * or where you live,
+  * what matters is what YOU can do
+
+---
+
+<CafjsHeader/>
+
+### 8. Profit-as-you-go (cont.)
+
+<SplitImage>
+
+<img src={Register} width="95%" height="95%" />
+
+<img src={Memory} width="90%" height="90%" />
+
+
+</SplitImage>
+
+
+---
+
+<CafjsHeader/>
+
+### 9. Unbundled P2P Payments
+
+* How to cash out transferable units
+  * with **any** P2P mobile payments systems,
+  * or hard cash
+* Safe mechanism to exchange units
+  * a few dollars per transaction
+  * within long-term relationships
+
+---
+
+<CafjsHeader/>
+
+### 9. Unbundled P2P Payments (cont.)
+
+
+<SplitImage>
+
+<img src={Protocol} width="75%" height="75%" />
+
+* Two phase protocol
+* Escrow acount for units
+* Reputation system updated
+  * with protocol outcomes,
+  * and all-at-fault disputes
+
+
+
+
+</SplitImage>
+
+---
+
+<CafjsHeader/>
+
+### Wrap up
+
+Website: https://www.cafjs.com
+
+Github: https://github.com/cafjs/caf
+
+Caf.js Cloud: https://root-launcher.cafjs.com
+
+Contact: antlai@cafjs.com or @cafjs (Twitter)
