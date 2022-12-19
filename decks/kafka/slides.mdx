@@ -1,0 +1,92 @@
+import mytheme from './mytheme.js';
+
+import {prism} from '@mdx-deck/themes'
+
+import SplitCode from '../../src/components/splitCode'
+import SplitImage from '../../src/components/splitImage'
+import KafkaStreams1 from '../../src/svgs/kafkastreams1.svg'
+import KafkaStreams2 from '../../src/svgs/kafkastreams2.svg'
+import KafkaCafjs from '../../src/svgs/kafkacafjs.svg'
+import KafkaActors from '../../src/svgs/kafkaactors.svg'
+import KafkaTransactionActors from '../../src/svgs/kafkatransactionactors.svg'
+import KafkaDemo from '../../src/svgs/kafkademo.svg'
+
+import CafjsHeader from '../../src/components/cafjsheader'
+
+export const theme = {
+    ...mytheme,
+    ...prism,
+}
+
+
+<CafjsHeader/>
+
+#### An Exactly-Once API Gateway for Apache Kafka
+
+Antonio Lain, Caf.js Labs
+
+antlai@cafjs.com
+
+---
+
+<CafjsHeader/>
+
+### Fast + Exactly-Once
+
+<KafkaStreams1 width="80%" height="80%" />
+
+---
+
+<CafjsHeader/>
+
+### Slow + NOT Exactly-Once
+
+<KafkaStreams2 width="80%" height="80%" />
+
+---
+
+<CafjsHeader/>
+
+### Fast + Exactly-Once
+
+<KafkaCafjs width="80%" height="80%" />
+
+---
+
+<CafjsHeader/>
+
+### Fast with Caf.js Actors
+
+<KafkaActors width="80%" height="80%" />
+
+---
+
+<CafjsHeader/>
+
+### Exactly-Once Semantics with Caf.js
+
+<KafkaTransactionActors width="70%" height="70%" />
+
+---
+
+<CafjsHeader/>
+
+### Demo
+
+<KafkaDemo width="95%" height="95%" />
+
+---
+
+<CafjsHeader/>
+
+### Wrap up
+
+Website: https://www.cafjs.com
+
+App: https://github.com/cafjs/caf_hellokafka.git
+
+Framework: https://github.com/cafjs/caf
+
+Caf.js Cloud: https://root-launcher.cafjs.com
+
+Contact: antlai@cafjs.com or @cafjs (Twitter)
